@@ -1,9 +1,45 @@
-
+@import "bcc-variables";
 
 body {
     font-family: "Archivo", Helvetica, Arial, sans-serif;
 }
 
-h1, h2, h3, h4 {
-    font-weight:900;
+.main-content {
+    h1, h2, h3, h4 {
+        font-weight:900;
+    }
+}
+
+.page-header {
+    border-radius: 3px;
+    margin: 0px 20px;
+    padding: 40px;
+}
+
+.logo {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    img {
+        max-width: 100px;
+        padding: 20px;
+    }
+}
+
+.btn {
+    background-color: $bcc-neutral-black;
+    border-color: $bcc-light-green;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 0.3rem;
+    color: $bcc-light-green;
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+
+    &:hover {
+        color: lighten($bcc-light-green, 40%);
+        text-decoration: none;
+        background-color: lighten($bcc-neutral-black, 20%);
+        border-color: lighten($bcc-light-green, 40%);
+    }
 }
