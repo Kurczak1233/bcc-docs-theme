@@ -1,0 +1,29 @@
+
+$bcc-dark-green: #004e48;
+$bcc-light-green: #dbe1c0;
+$bcc-neutral-black: #272727;
+$bcc-warm-grey: #d3cfc9;
+
+// Breakpoints
+$large-breakpoint: 64em !default;
+$medium-breakpoint: 42em !default;
+
+// Headers
+$header-heading-color: $bcc-warm-grey !default;
+$header-bg-color: $bcc-dark-green !default;
+$header-bg-color-secondary: $bcc-dark-green !default;
+
+// Text
+$section-headings-color: $bcc-dark-green !default;
+$body-text-color: $bcc-neutral-black !default;
+$body-link-color: lighten($bcc-dark-green, 40%) !default;
+$blockquote-text-color: lighten($bcc-neutral-black, 20%) !default;
+
+// Code
+$code-bg-color: $bcc-warm-grey !default;
+$code-text-color: $bcc-neutral-black !default;
+
+// Borders
+$border-color: $bcc-dark-green !default;
+$table-border-color: $bcc-dark-green !default;
+$hr-border-color: $bcc-dark-green !default;
