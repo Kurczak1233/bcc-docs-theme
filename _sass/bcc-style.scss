@@ -6,12 +6,25 @@ body {
 
 .main-content {
     h1, h2, h3, h4 {
-        font-weight:900;
+        font-weight: 900;
+    }
+
+    h2 {
+        color: $bcc-neutral-black;
+    }
+
+    h3, h4, h5, h6 {
+        color: lighten($bcc-neutral-black, 20%);
+        font-weight: bold;
     }
 }
 
+h2.project-tagline {
+    font-family: "IBM Plex Serif", Helvetica, Arial, sans-serif;
+}
+
 .page-header {
-    border-radius: 3px;
+    border-radius: 5px;
     margin: 0px 20px;
     padding: 40px;
 }
@@ -22,7 +35,7 @@ body {
     margin-right: auto;
 
     img {
-        max-width: 100px;
+        max-width: 200px;
         padding: 20px;
     }
 }
