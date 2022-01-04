@@ -16,11 +16,11 @@ $header-bg-color-secondary: $bcc-dark-green !default;
 // Text
 $section-headings-color: $bcc-dark-green !default;
 $body-text-color: $bcc-neutral-black !default;
-$body-link-color: lighten($bcc-dark-green, 20%) !default;
+$body-link-color: $bcc-dark-green !default;
 $blockquote-text-color: lighten($bcc-neutral-black, 20%) !default;
 
 // Code
-$code-bg-color: $bcc-warm-grey !default;
+$code-bg-color: lighten($bcc-warm-grey, 20%) !default;
 $code-text-color: $bcc-neutral-black !default;
 
 // Borders
