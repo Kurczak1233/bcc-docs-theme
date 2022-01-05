@@ -58,12 +58,14 @@ h2.project-tagline {
 }
 
 #markdown-toc {
-    padding: 20px;
+    padding: 20px 40px;
     background-color: $bcc-light-green;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: solid 2px $bcc-dark-green;
 
     @include large {
-        position: fixed;
-        right: 20px;
+        float: right;
     }
 
     @include medium {
@@ -71,6 +73,6 @@ h2.project-tagline {
     }
 
     @include small {
-
+        font-size: 1em;
     }
 }
