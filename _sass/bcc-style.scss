@@ -56,3 +56,21 @@ h2.project-tagline {
         border-color: lighten($bcc-light-green, 40%);
     }
 }
+
+#markdown-toc {
+    padding: 20px;
+    background-color: $bcc-light-green;
+
+    @include large {
+        position: fixed;
+        right: 20px;
+    }
+
+    @include medium {
+        float: right;
+    }
+
+    @include small {
+
+    }
+}
