@@ -16,7 +16,8 @@
       <a id="skip-to-content" href="#content">Skip to the content.</a>
 
       <div class="logo">
-          <img src="{{ '/assets/images/logo.svg?v=' | append: site.github.build_revision | relative_url }}">
+          <a href="/" title="BCC Developer Portal"><img alt="logo" src="{{ '/assets/images/logo.svg?v=' | append: site.github.build_revision | relative_url }}"></a>
+          <a href="/">Home</a> | <a href="{{ site.baseurl }}">{{ site.title | default: site.github.repository_name }}</a>
       </div>
       <header class="page-header" role="banner">
           <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
