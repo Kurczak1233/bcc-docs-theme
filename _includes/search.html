@@ -1,0 +1,21 @@
+﻿<div id="bcc-search-wrapper">
+    <label for="search_code_input">Search for code in <span>BCC-code</span></label>
+    <div>
+        <input type="text" name="searchCode" id="search_code_input" placeholder="Example: Widgets"/>
+        <button onclick="searchOnClickFunction()" class="btn-search">
+            <span>Search Github</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    function searchOnClickFunction() {
+
+        const searchCode = document.getElementById("search_code_input").value;
+        const searchUrl = "https://github.com/search?q=org%3Abcc-code+" + searchCode;
+
+        console.log(searchUrl)
+        window.location.href = searchUrl
+
+    }
+</script>

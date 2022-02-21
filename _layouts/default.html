@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
         <title></title>
         {% include head-custom.html %}
+        
     </head>
     <body>
 
@@ -46,22 +47,9 @@
         <a href="{{ site.baseurl }}">{{ site.title | default: site.github.repository_name }}</a>
         {% endif %}
     </div>
-    
-    <div class="search">
 
-        <p>Search for Code snippets in BCC-code</p>
-        <label>
-            <span>Code</span>
-            <input type="text" name="searchCode" placeholder="widgets"/>
-        </label>
-        <br>
-        <button onclick="generateSearchUrl(searchCode.value) " class="btn-search">
-            <i class="fa fa-github"></i>
-            <span>Search Github</span>
-        </button>
-        
-    </div>
-    
+    {% include search.html %}
+
     <main id="content" class="main-content" role="main">
         {{ content }}
     
