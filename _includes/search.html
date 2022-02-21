@@ -1,7 +1,11 @@
 ﻿<div id="bcc-search-wrapper">
     <label for="search_code_input">Search for code in <span>BCC-code</span></label>
     <div>
-        <input type="text" name="searchCode" id="search_code_input" placeholder="Example: Widgets"/>
+
+        <div id="search_suggestions">
+            <input type="text" name="searchCode" id="search_code_input" placeholder="Example: Widgets"/>
+        </div>
+
         <button onclick="searchOnClickFunction()" class="btn-search">
             <span>Search Github</span>
         </button>
@@ -14,6 +18,7 @@
 <script type="module"></script>
 
 <script>
+
 
     function searchOnClickFunction() {
 
@@ -33,15 +38,19 @@
         const getMarkdownData = await fetch(getMarkdownFilesUrl)
             .then(response => response.json())
             .catch(error => console.log(error));
-        
-        let test = getMarkdownData.items.map(item => {
-            return [
-                item.name,
-                item.html_url,
-            ]
-        })
-        console.log(test)
-        console.log(getMarkdownData)
+
+
+        for (let data of getMarkdownData.items) {
+            const markdownRepositoryData = data.repository;
+            const markdownRepositoryName = markdownRepositoryData.name;
+            
+            const searchSuggestions = document.createElement("p");
+            searchSuggestions.innerText = markdownRepositoryName;
+            document.getElementById("search_suggestions").appendChild(searchSuggestions)
+            
+        }
+
+
     }
 
 </script>
