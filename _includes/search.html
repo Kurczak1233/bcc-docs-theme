@@ -57,7 +57,7 @@
     let markdownUnusedArray = [];
 
     async function listMarkdownFiles() {
-        const getMarkdownFilesUrl = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=250&sort=stars`;
+        const getMarkdownFilesUrl = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&sort=stars`;
 
         const getMarkdownData = await fetch(getMarkdownFilesUrl)
             .then(response => response.json())
