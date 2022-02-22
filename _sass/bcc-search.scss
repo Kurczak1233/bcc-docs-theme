@@ -1,38 +1,105 @@
-﻿//#bcc-search-wrapper {
-//  color: $body-text-color;
-//  display: grid;
-//  grid-template-rows: 1fr;
-//  max-width: 350px;
-//  margin: 30px auto;
-//  gap: 5px;
-//
-//  label {
-//    text-align: center;
-//    font-size: 16px;
-//    line-height: 150%;
-//
-//    span {
-//      font-weight: bold;
-//      font-style: italic;
-//    }
-//
-//  }
-//
-//  > div {
-//    display: grid;
-//    grid-template-columns: 1.5fr 1fr;
-//    gap: 5px;
-//
-//    input {
-//      border: 1px solid $border-color;
-//      padding: 10px;
-//      border-radius: $border-radius;
-//    }
-//
-//    button {
-//      border: none;
-//      padding: 10px;
-//      border-radius: $border-radius;
-//    }
-//  }
-//}
+﻿#bcc-search-wrapper {
+  color: $body-text-color;
+  display: grid;
+  grid-template-rows: 1fr;
+  max-width: 350px;
+  margin: 30px auto;
+  gap: 5px;
+  line-height: 150%;
+
+  label {
+    text-align: center;
+    font-size: 16px;
+    line-height: 150%;
+    display: block;
+
+    span {
+      font-weight: bold;
+      font-style: italic;
+    }
+
+  }
+
+  > div {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1.5fr 1fr;
+
+    #search_suggestions_wrapper {
+      max-width: 205px;
+
+      input {
+        border: 1px solid $border-color;
+        padding: 10px;
+        border-radius: $border-radius;
+        height: 45px;
+        width: 100%;
+        cursor: pointer;
+
+        &:hover, &:focus {
+
+          + #search_suggestions-section {
+            max-height: fit-content;
+          }
+
+        }
+      }
+
+      #search_suggestions-section {
+
+        max-height: 0;
+        overflow: hidden;
+        transition: 0.5s;
+        position: absolute;
+        background: white;
+        width: 205px;
+        margin-top: -4px;
+
+        &:hover {
+          max-height: fit-content;
+
+        }
+
+        #search_suggestions {
+          border: 1px solid $border-color;
+          list-style: none;
+          padding: 0;
+          margin: 0;
+
+          li {
+            padding: 5px 10px;
+            margin: 0;
+            cursor: pointer;
+
+            overflow: hidden;
+            font-size: 14px;
+            max-width: 205px;
+            max-height: 34px;
+            text-overflow: ellipsis;
+            word-break: break-all;
+
+            a {
+              &:hover {
+                text-decoration: none;
+              }
+            }
+
+            &:hover {
+              background-color: #f0f0f0;
+            }
+
+
+          }
+        }
+      }
+
+    }
+
+    button {
+      border: none;
+      padding: 10px;
+      border-radius: $border-radius;
+      height: 45px;
+    }
+  }
+}
