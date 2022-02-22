@@ -35,12 +35,16 @@
         height: 45px;
         width: 100%;
         cursor: pointer;
+        transition: 0.5s;
 
         &:hover, &:focus {
 
           + #search_suggestions-section {
-            max-height: fit-content;
+            max-height: 350px;
+            border: 1px solid $border-color;
           }
+          
+          border-radius: $border-radius $border-radius 0 0;
 
         }
       }
@@ -53,15 +57,21 @@
         position: absolute;
         background: white;
         width: 205px;
-        margin-top: -4px;
+        margin-top: -2px;
+        border: 0 solid $border-color;
+        border-radius: 0 0 $border-radius $border-radius;
 
         &:hover {
-          max-height: fit-content;
+          max-height: 350px;
+          border: 1px solid $border-color;
 
         }
 
         #search_suggestions {
-          border: 1px solid $border-color;
+
+          max-height: 350px;
+          overflow-x: auto;
+
           list-style: none;
           padding: 0;
           margin: 0;

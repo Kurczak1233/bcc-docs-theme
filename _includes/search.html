@@ -3,7 +3,7 @@
     <div>
 
         <div id="search_suggestions_wrapper">
-            <input type="text" name="searchCode" id="search_code_input" placeholder="Example: Widgets"
+            <input type="text" name="searchCode" id="search_code_input" placeholder="Search bcc-code"
                    onkeyup="autoComplete()"/>
             <div id="search_suggestions-section">
                 <ul id="search_suggestions"></ul>
@@ -84,6 +84,7 @@
             searchSuggestions.className = "search_suggestion";
             searchSuggestions.setAttribute("onclick", `updateAndSearch('${markdownFileName} ',' ${markdownFileUrl}')`);
             searchSuggestions.innerText = `${displayName}`;
+            // searchSuggestions.innerText = `${markdownFileName}`;
 
             const newElementLocation = document.getElementById("search_suggestions")
             newElementLocation.appendChild(createListItem).appendChild(searchSuggestions)
