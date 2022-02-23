@@ -1,18 +1,28 @@
 ﻿<div id="bcc-search-wrapper">
-    <label for="search_code_input">Search for code in <span>BCC-code</span></label>
-    <div>
 
-        <div id="search_suggestions_wrapper">
-            <input type="text" name="searchCode" id="search_code_input" placeholder="Search bcc-code"
-                   onkeyup="autoComplete()"/>
-            <div id="search_suggestions-section">
-                <ul id="search_suggestions"></ul>
-            </div>
+    <div id="search_suggestions_wrapper">
+        <label for="search_code_input"> Search BCC-Code Github </label>
+
+        <input type="text" name="searchCode"
+               id="search_code_input"
+               placeholder="Search bcc-code"
+               onkeyup="doubleFunction()"/>
+        <div id="search_suggestions-section">
+            <ul>
+                <li class="search_button">
+                    <a onclick="searchOnClickFunction()" class="btn-search">
+                        Search on Github
+                    </a>
+                </li>
+                <li>
+                    <ul id="search_suggestions"></ul>
+                </li>
+
+
+            </ul>
+
         </div>
 
-        <button onclick="searchOnClickFunction()" class="btn-search">
-            <span>Search Github</span>
-        </button>
     </div>
 </div>
 
@@ -20,50 +30,75 @@
 
 <script>
 
+    const doubleFunction = () => {
+        autoComplete();
+        checkInputValue();
+    }
+
+    // function autoComplete() {
+    //     let input, filter, suggestionWrapper, suggestion, a, i;
+    //     input = document.getElementById("search_code_input");
+    //     filter = input.value.toUpperCase();
+    //     suggestionWrapper = document.getElementById("search_suggestions");
+    //     suggestion = suggestionWrapper.getElementsByClassName("search_suggestion");
+    //     for (i = 0; i < suggestion.length; i++) {
+    //         a = suggestion[i].getElementsByTagName("a");
+    //         if (a.innerHTML !== filter) {
+    //             suggestion[i].style.display = "";
+    //         } else {
+    //             suggestion[i].style.display = "none";
+    //         }
+    //     }
+    // }
 
     function autoComplete() {
-        let input, filter, suggestionWrapper, suggestion, a, i;
+        let input, filter, ul, li, a, i;
         input = document.getElementById("search_code_input");
         filter = input.value.toUpperCase();
-        suggestionWrapper = document.getElementById("search_suggestions");
-        suggestion = suggestionWrapper.getElementsByTagName("li");
-        for (i = 0; i < suggestion.length; i++) {
-            a = suggestion[i].getElementsByTagName("a")[0];
+        ul = document.getElementById("search_suggestions");
+        li = ul.getElementsByTagName("li");
+        // li = ul.querySelector(".search_suggestion");
+
+        for (i = 0; i < li.length; i++) {
+
+            a = li[i].getElementsByTagName("a")[0];
             if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                suggestion[i].style.display = "";
+                li[i].style.display = "";
             } else {
-                suggestion[i].style.display = "none";
+                li[i].style.display = "none";
             }
         }
+    }
+
+    function checkInputValue() {
+        const searchInputElement = document.getElementById("search_code_input");
+
+        if (searchInputElement.value === "" || searchInputElement.value === " ") {
+            searchInputElement.setAttribute("class", "");
+        } else {
+            searchInputElement.setAttribute("class", "input_searching");
+        }
+
+
     }
 
     function searchOnClickFunction() {
 
         const searchCode = document.getElementById("search_code_input").value;
-        const searchUrl = "https://github.com/search?q=org%3Abcc-code+" + searchCode;
+        window.location.href = "https://github.com/search?q=org%3Abcc-code+" + searchCode;
 
-        console.log(searchUrl);
-        window.location.href = searchUrl;
-
-    }
-
-    function updateAndSearch(repoName, fileUrl) {
-        document.getElementById("search_code_input").value = repoName;
-        console.log(fileUrl);
-        window.location.href = fileUrl;
     }
 
     let markdownNameArray = [];
-    let markdownUnusedArray = [];
 
     async function listMarkdownFiles() {
-        const getMarkdownFilesUrl = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&sort=stars`;
-
+        const getMarkdownFilesUrl = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100`;
         const getMarkdownData = await fetch(getMarkdownFilesUrl)
             .then(response => response.json())
             .catch(error => console.log(error));
 
-        console.log(getMarkdownData);
+        let newElementsLocation = document.getElementById("search_suggestions");
+
 
         for (let data of getMarkdownData.items) {
             const markdownRepositoryData = data.repository;
@@ -76,24 +111,26 @@
                 continue;
             } else {
                 markdownNameArray.push(displayName);
-                console.log(markdownNameArray)
             }
 
-            const createListItem = document.createElement("li");
-            const searchSuggestions = document.createElement("a");
-            searchSuggestions.className = "search_suggestion";
-            searchSuggestions.setAttribute("onclick", `updateAndSearch('${markdownFileName} ',' ${markdownFileUrl}')`);
-            searchSuggestions.innerText = `${displayName}`;
-            // searchSuggestions.innerText = `${markdownFileName}`;
+            let createListItem = document.createElement("li");
+            let searchSuggestion = document.createElement("a");
+            let searchSuggestionRepository = document.createElement("span");
 
-            const newElementLocation = document.getElementById("search_suggestions")
-            newElementLocation.appendChild(createListItem).appendChild(searchSuggestions)
+            createListItem.className = "search_suggestion";
 
+            searchSuggestion.setAttribute("href", `${markdownFileUrl}`);
+            searchSuggestion.innerText = `${markdownFileName}`;
+
+            searchSuggestionRepository.className = "search_suggestion";
+            searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
+
+            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
+            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
         }
-
 
     }
 
-    document.onload(listMarkdownFiles());
+    listMarkdownFiles();
 
 </script>
