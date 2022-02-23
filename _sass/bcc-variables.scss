@@ -3,6 +3,7 @@ $bcc-dark-green: #004e48;
 $bcc-light-green: #dbe1c0;
 $bcc-neutral-black: #272727;
 $bcc-warm-grey: #d3cfc9;
+$bcc-warm-grey-darker: #ABA8A3;
 
 // Breakpoints
 $large-breakpoint: 64em !default;
@@ -27,3 +28,10 @@ $code-text-color: $bcc-neutral-black !default;
 $border-color: $bcc-dark-green !default;
 $table-border-color: $bcc-dark-green !default;
 $hr-border-color: $bcc-dark-green !default;
+
+// Border Radius
+$border-radius-sm: 2px;
+$border-radius: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
