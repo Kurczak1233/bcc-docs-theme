@@ -35,29 +35,12 @@
         checkInputValue();
     }
 
-    // function autoComplete() {
-    //     let input, filter, suggestionWrapper, suggestion, a, i;
-    //     input = document.getElementById("search_code_input");
-    //     filter = input.value.toUpperCase();
-    //     suggestionWrapper = document.getElementById("search_suggestions");
-    //     suggestion = suggestionWrapper.getElementsByClassName("search_suggestion");
-    //     for (i = 0; i < suggestion.length; i++) {
-    //         a = suggestion[i].getElementsByTagName("a");
-    //         if (a.innerHTML !== filter) {
-    //             suggestion[i].style.display = "";
-    //         } else {
-    //             suggestion[i].style.display = "none";
-    //         }
-    //     }
-    // }
-
     function autoComplete() {
         let input, filter, ul, li, a, i;
         input = document.getElementById("search_code_input");
         filter = input.value.toUpperCase();
         ul = document.getElementById("search_suggestions");
         li = ul.getElementsByTagName("li");
-        // li = ul.querySelector(".search_suggestion");
 
         for (i = 0; i < li.length; i++) {
 
@@ -104,22 +87,31 @@
             const markdownRepositoryData = data.repository;
             const markdownRepositoryName = markdownRepositoryData.name;
             const markdownFileName = data.name;
-            const markdownFileUrl = data.html_url;
+            const markdownFilePath = data.path;
+            // const markdownFileUrl = data.html_url;
             const displayName = `${markdownRepositoryName}/${markdownFileName}`
 
+
+            const markdownPageUrl = `/${markdownRepositoryName}/${markdownFilePath}`;
+            
             if (markdownNameArray.includes(displayName)) {
                 continue;
             } else {
                 markdownNameArray.push(displayName);
             }
 
+            
             let createListItem = document.createElement("li");
             let searchSuggestion = document.createElement("a");
             let searchSuggestionRepository = document.createElement("span");
 
+            console.log(markdownPageUrl)
+
+
+
             createListItem.className = "search_suggestion";
 
-            searchSuggestion.setAttribute("href", `${markdownFileUrl}`);
+            searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
             searchSuggestion.innerText = `${markdownFileName}`;
 
             searchSuggestionRepository.className = "search_suggestion";
