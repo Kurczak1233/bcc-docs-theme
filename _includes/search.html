@@ -75,7 +75,11 @@
     let markdownNameArray = [];
 
     async function listMarkdownFiles() {
-        const getMarkdownFilesUrl = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100`;
+
+        let getMarkdownFilesUrl
+
+        getMarkdownFilesUrl = `https://api.github.com/search/code?q=language:markdown+repo:bcc-code/bcc-code.github.io`;
+
         const getMarkdownData = await fetch(getMarkdownFilesUrl)
             .then(response => response.json())
             .catch(error => console.log(error));
@@ -88,10 +92,12 @@
             const markdownRepositoryName = markdownRepositoryData.name;
             const markdownFileName = data.name;
             const markdownFilePath = data.path;
-            // const markdownFileUrl = data.html_url;
+            const markdownFileUrl = data.html_url;
             const displayName = `${markdownRepositoryName}/${markdownFileName}`
 
             const sliceFilePath = markdownFilePath.slice(0, -3);
+
+            console.log(markdownFileUrl)
 
             const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
 
@@ -120,6 +126,72 @@
 
     }
 
-    listMarkdownFiles();
+    listMarkdownFiles()
+    
+    // let searchInputElement = document.getElementById("search_code_input");
+    //
+    // async function searchInMarkdownFile() {
+    //
+    //     const searchInputValue = searchInputElement.value;
+    //
+    //     const getMarkdownFilesUrl = `https://api.github.com/search/code?q=${searchInputValue}+language:markdown+repo:bcc-code/bcc-code.github.io`;
+    //
+    //     const getMarkdownData = await fetch(getMarkdownFilesUrl)
+    //         .then(response => response.json())
+    //         .catch(error => console.log(error));
+    //
+    //     console.log(getMarkdownData)
+    //
+    //     let newElementsLocation = document.getElementById("search_suggestions");
+    //
+    //
+    //     for (let data of getMarkdownData.items) {
+    //         const markdownRepositoryData = data.repository;
+    //         const markdownRepositoryName = markdownRepositoryData.name;
+    //         const markdownFileName = data.name;
+    //         const markdownFilePath = data.path;
+    //         const markdownFileUrl = data.html_url;
+    //         const displayName = `${markdownRepositoryName}/${markdownFileName}`
+    //
+    //         const sliceFilePath = markdownFilePath.slice(0, -3);
+    //
+    //         console.log(markdownFileUrl)
+    //
+    //         const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
+    //
+    //         if (markdownNameArray.includes(displayName)) {
+    //             continue;
+    //         } else {
+    //             markdownNameArray.push(displayName);
+    //         }
+    //
+    //
+    //         let createListItem = document.createElement("li");
+    //         let searchSuggestion = document.createElement("a");
+    //         let searchSuggestionRepository = document.createElement("span");
+    //
+    //         createListItem.className = "search_suggestion";
+    //
+    //         searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
+    //         searchSuggestion.innerText = `${markdownFileName}`;
+    //
+    //         searchSuggestionRepository.className = "search_suggestion";
+    //         searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
+    //
+    //         newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
+    //         newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
+    //     }
+    //
+    // }
+    //
+    // searchInputElement.addEventListener("keyup", function (event) {
+    //
+    //     switch (event.key) {
+    //         case"Enter":
+    //             searchInMarkdownFile()
+    //             break;
+    //     }
+    // });
+
 
 </script>
