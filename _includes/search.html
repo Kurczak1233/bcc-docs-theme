@@ -91,23 +91,20 @@
             // const markdownFileUrl = data.html_url;
             const displayName = `${markdownRepositoryName}/${markdownFileName}`
 
+            const sliceFilePath = markdownFilePath.slice(0, -3);
 
-            const markdownPageUrl = `/${markdownRepositoryName}/${markdownFilePath}`;
-            
+            const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
+
             if (markdownNameArray.includes(displayName)) {
                 continue;
             } else {
                 markdownNameArray.push(displayName);
             }
 
-            
+
             let createListItem = document.createElement("li");
             let searchSuggestion = document.createElement("a");
             let searchSuggestionRepository = document.createElement("span");
-
-            console.log(markdownPageUrl)
-
-
 
             createListItem.className = "search_suggestion";
 
