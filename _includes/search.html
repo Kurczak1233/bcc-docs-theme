@@ -72,249 +72,113 @@
 
     }
 
-    let markdownNameArray = [];
-
     async function listMarkdownFiles() {
 
-        let getMarkdownFilesUrl
-        let getMarkdownFilesUrlPageOne
-        let getMarkdownFilesUrlPageTwo
-        let getMarkdownFilesUrlPageThree
-        let getMarkdownFilesUrlPageFour
-
-        getMarkdownFilesUrl = [
-            `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=1`,
-            `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=2`,
-            `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=3`,
-            `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=4`
-        ];
-        getMarkdownFilesUrlPageOne = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=1`;
-        getMarkdownFilesUrlPageTwo = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=2`;
-        getMarkdownFilesUrlPageThree = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=3`;
-        getMarkdownFilesUrlPageFour = `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=4`;
-
-        const getMarkdownDataPageOne = await fetch(getMarkdownFilesUrlPageOne).then(response => response.json()).catch(error => console.log(error));
-        const getMarkdownDataPageTwo = await fetch(getMarkdownFilesUrlPageTwo).then(response => response.json()).catch(error => console.log(error));
-        const getMarkdownDataPageThree = await fetch(getMarkdownFilesUrlPageThree).then(response => response.json()).catch(error => console.log(error));
-        const getMarkdownDataPageFour = await fetch(getMarkdownFilesUrlPageFour).then(response => response.json()).catch(error => console.log(error));
-
-
         let newElementsLocation = document.getElementById("search_suggestions");
-        let data
-        
-        for (data of getMarkdownDataPageOne.items) {
-            const markdownRepositoryData = data.repository;
-            const markdownRepositoryName = markdownRepositoryData.name;
-            const markdownFileName = data.name;
-            const markdownFilePath = data.path;
-            const markdownFileUrl = data.html_url;
-            const displayName = `${markdownRepositoryName}/${markdownFileName}`
 
-            const sliceFilePath = markdownFilePath.slice(0, -3);
+        if (sessionStorage.length !== 0) {
+            console.log("There is data in the session!");
 
-            console.log(markdownFileUrl)
+            for (let searchNumber = 1; searchNumber <= sessionStorage.length; searchNumber++) {
 
-            const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
+                let data = sessionStorage[searchNumber];
 
-            if (markdownNameArray.includes(displayName)) {
-                continue;
-            } else {
-                markdownNameArray.push(displayName);
+                data = JSON.parse(data)
+
+                let firstKey = Object.keys(data)[0];
+                let secondKey = Object.keys(data)[1];
+                let thirdKey = Object.keys(data)[2];
+
+                let markdownRepositoryName = data[firstKey];                
+                let markdownFileName = data[secondKey];
+                let markdownFilePath = data[thirdKey];
+                
+                const sliceFilePath = markdownFilePath.slice(0, -3);
+
+                const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
+
+                let createListItem = document.createElement("li");
+                let searchSuggestion = document.createElement("a");
+                let searchSuggestionRepository = document.createElement("span");
+
+                createListItem.className = "search_suggestion";
+
+                searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
+                searchSuggestion.innerText = `${markdownFileName}`;
+
+                searchSuggestionRepository.className = "search_suggestion";
+                searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
+
+                newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
+                newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
+
+
             }
 
+        } else {
+            console.log("The session data is empty... adding data")
 
-            let createListItem = document.createElement("li");
-            let searchSuggestion = document.createElement("a");
-            let searchSuggestionRepository = document.createElement("span");
+            let getMarkdownFilesUrl;
 
-            createListItem.className = "search_suggestion";
+            getMarkdownFilesUrl = [
+                `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=1`,
+                `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=2`,
+                `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=3`,
+                `https://api.github.com/search/code?q=language:markdown+org:bcc-code&per_page=100&page=4`
+            ];
 
-            searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
-            searchSuggestion.innerText = `${markdownFileName}`;
+            let data;
+            let urlNumber = 1;
 
-            searchSuggestionRepository.className = "search_suggestion";
-            searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
+            for (const url of getMarkdownFilesUrl) {
 
-            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
-            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
-        }
-        for (data of getMarkdownDataPageTwo.items) {
-            const markdownRepositoryData = data.repository;
-            const markdownRepositoryName = markdownRepositoryData.name;
-            const markdownFileName = data.name;
-            const markdownFilePath = data.path;
-            const markdownFileUrl = data.html_url;
-            const displayName = `${markdownRepositoryName}/${markdownFileName}`
+                const getMarkdownData = await fetch(url).then(response => response.json()).catch(error => console.log(error));
+                for (data of getMarkdownData.items) {
 
-            const sliceFilePath = markdownFilePath.slice(0, -3);
+                    const markdownRepositoryData = data.repository;
+                    const markdownRepositoryName = markdownRepositoryData.name;
+                    const markdownFileName = data.name;
+                    const markdownFilePath = data.path;
 
-            console.log(markdownFileUrl)
+                    const saveToSession = {
+                        markdownRepositoryName,
+                        markdownFileName,
+                        markdownFilePath
+                    }
+                    
+                    sessionStorage.setItem(urlNumber, JSON.stringify(saveToSession));
+                    const sliceFilePath = markdownFilePath.slice(0, -3);
 
-            const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
+                    const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
 
-            if (markdownNameArray.includes(displayName)) {
-                continue;
-            } else {
-                markdownNameArray.push(displayName);
+                    let createListItem = document.createElement("li");
+                    let searchSuggestion = document.createElement("a");
+                    let searchSuggestionRepository = document.createElement("span");
+
+                    createListItem.className = "search_suggestion";
+
+                    searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
+                    searchSuggestion.innerText = `${markdownFileName}`;
+
+                    searchSuggestionRepository.className = "search_suggestion";
+                    searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
+
+                    newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
+                    newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
+
+                    urlNumber++
+                }
+
             }
 
+            console.log("Data added")
 
-            let createListItem = document.createElement("li");
-            let searchSuggestion = document.createElement("a");
-            let searchSuggestionRepository = document.createElement("span");
-
-            createListItem.className = "search_suggestion";
-
-            searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
-            searchSuggestion.innerText = `${markdownFileName}`;
-
-            searchSuggestionRepository.className = "search_suggestion";
-            searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
-
-            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
-            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
         }
-        for (data of getMarkdownDataPageThree.items) {
-            const markdownRepositoryData = data.repository;
-            const markdownRepositoryName = markdownRepositoryData.name;
-            const markdownFileName = data.name;
-            const markdownFilePath = data.path;
-            const markdownFileUrl = data.html_url;
-            const displayName = `${markdownRepositoryName}/${markdownFileName}`
 
-            const sliceFilePath = markdownFilePath.slice(0, -3);
-
-            console.log(markdownFileUrl)
-
-            const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
-
-            if (markdownNameArray.includes(displayName)) {
-                continue;
-            } else {
-                markdownNameArray.push(displayName);
-            }
-
-
-            let createListItem = document.createElement("li");
-            let searchSuggestion = document.createElement("a");
-            let searchSuggestionRepository = document.createElement("span");
-
-            createListItem.className = "search_suggestion";
-
-            searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
-            searchSuggestion.innerText = `${markdownFileName}`;
-
-            searchSuggestionRepository.className = "search_suggestion";
-            searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
-
-            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
-            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
-        }
-        for (data of getMarkdownDataPageFour.items) {
-            const markdownRepositoryData = data.repository;
-            const markdownRepositoryName = markdownRepositoryData.name;
-            const markdownFileName = data.name;
-            const markdownFilePath = data.path;
-            const markdownFileUrl = data.html_url;
-            const displayName = `${markdownRepositoryName}/${markdownFileName}`
-
-            const sliceFilePath = markdownFilePath.slice(0, -3);
-
-            console.log(markdownFileUrl)
-
-            const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
-
-            if (markdownNameArray.includes(displayName)) {
-                continue;
-            } else {
-                markdownNameArray.push(displayName);
-            }
-
-
-            let createListItem = document.createElement("li");
-            let searchSuggestion = document.createElement("a");
-            let searchSuggestionRepository = document.createElement("span");
-
-            createListItem.className = "search_suggestion";
-
-            searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
-            searchSuggestion.innerText = `${markdownFileName}`;
-
-            searchSuggestionRepository.className = "search_suggestion";
-            searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
-
-            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
-            newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
-        }
 
     }
 
-    listMarkdownFiles()
-
-    // let searchInputElement = document.getElementById("search_code_input");
-    //
-    // async function searchInMarkdownFile() {
-    //
-    //     const searchInputValue = searchInputElement.value;
-    //
-    //     const getMarkdownFilesUrl = `https://api.github.com/search/code?q=${searchInputValue}+language:markdown+repo:bcc-code/bcc-code.github.io`;
-    //
-    //     const getMarkdownData = await fetch(getMarkdownFilesUrl)
-    //         .then(response => response.json())
-    //         .catch(error => console.log(error));
-    //
-    //     console.log(getMarkdownData)
-    //
-    //     let newElementsLocation = document.getElementById("search_suggestions");
-    //
-    //
-    //     for (let data of getMarkdownData.items) {
-    //         const markdownRepositoryData = data.repository;
-    //         const markdownRepositoryName = markdownRepositoryData.name;
-    //         const markdownFileName = data.name;
-    //         const markdownFilePath = data.path;
-    //         const markdownFileUrl = data.html_url;
-    //         const displayName = `${markdownRepositoryName}/${markdownFileName}`
-    //
-    //         const sliceFilePath = markdownFilePath.slice(0, -3);
-    //
-    //         console.log(markdownFileUrl)
-    //
-    //         const markdownPageUrl = `/${markdownRepositoryName}/${sliceFilePath}.html`;
-    //
-    //         if (markdownNameArray.includes(displayName)) {
-    //             continue;
-    //         } else {
-    //             markdownNameArray.push(displayName);
-    //         }
-    //
-    //
-    //         let createListItem = document.createElement("li");
-    //         let searchSuggestion = document.createElement("a");
-    //         let searchSuggestionRepository = document.createElement("span");
-    //
-    //         createListItem.className = "search_suggestion";
-    //
-    //         searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
-    //         searchSuggestion.innerText = `${markdownFileName}`;
-    //
-    //         searchSuggestionRepository.className = "search_suggestion";
-    //         searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
-    //
-    //         newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion);
-    //         newElementsLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
-    //     }
-    //
-    // }
-    //
-    // searchInputElement.addEventListener("keyup", function (event) {
-    //
-    //     switch (event.key) {
-    //         case"Enter":
-    //             searchInMarkdownFile()
-    //             break;
-    //     }
-    // });
+    listMarkdownFiles();
 
 
 </script>
