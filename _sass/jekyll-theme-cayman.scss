@@ -310,21 +310,25 @@ a {
   }
 
   table {
-    display: block;
     width: 100%;
     overflow: auto;
+    border-collapse: collapse;
     word-break: normal;
     word-break: keep-all; // For Firefox to horizontally scroll wider tables.
     -webkit-overflow-scrolling: touch;
+    border: 0.5px solid $table-border-color;
 
     th {
       font-weight: bold;
+      border: none;
     }
 
     th,
     td {
-      padding: 0.5rem 1rem;
-      border: 1px solid $table-border-color;
+      padding: 0.5rem;
+      border: 0.5px solid $table-border-color;
+      border-left: none;
+      border-right: none;
     }
   }
 
