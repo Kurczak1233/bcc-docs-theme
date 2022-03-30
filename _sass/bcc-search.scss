@@ -1,27 +1,8 @@
-﻿@mixin large {
-  @media screen and (min-width: #{$large-breakpoint}) {
-    @content;
-  }
-}
-
-@mixin medium {
-  @media screen and (min-width: #{$medium-breakpoint}) and (max-width: #{$large-breakpoint}) {
-    @content;
-  }
-}
-
-@mixin small {
-  @media screen and (max-width: #{$medium-breakpoint}) {
-    @content;
-  }
-}
-
-
-.bcc-search-wrapper {
+﻿.bcc-search-wrapper {
   color: $body-text-color;
   display: grid;
   grid-template-rows: 1fr;
-  margin: 2rem auto 0;
+  margin: auto;
   gap: 5px;
   line-height: 150%;
   max-width: 500px;
@@ -41,6 +22,7 @@
       width: 100%;
       cursor: pointer;
       transition: 0.5s;
+      font-size: 1em;
 
       &.input_searching {
 
@@ -62,12 +44,12 @@
     }
 
     #search_suggestions_section {
-
+      z-index: 11;
       max-height: 0;
       transition: 0.5s;
       position: absolute;
       background: white;
-      width: 500px;
+      width: 468px;
       margin-top: -2px;
       border: 0 solid $border-color;
       border-radius: 0 0 $border-radius $border-radius;
@@ -168,27 +150,60 @@
 }
 
 #search {
+  position: relative;
+  max-width: 500px;
+  margin: auto;
 
-  &.active {
+  .search_modal {
     position: absolute;
+    overflow: hidden;
+    margin: 0;
     left: 0;
     right: 0;
-    top: 0;
-    margin: 2rem auto;
-    max-width: 500px;
-    box-sizing: content-box;
-    border-radius: 8px;
     background: white;
-    box-shadow: 2px 3px;
-    border: solid 1px;
-    display: block;
+    border-radius: 8px;
+    box-shadow: 2px 3px black;
+    padding: 0 2rem;
+
+    display: none;
+
+    h2 {
+      padding: 0;
+      margin: 0;
+    }
+
+    ul {
+      list-style: none;
+      height: 200px;
+      overflow: auto;
+      margin-bottom: 2rem;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      li {
+      }
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &.active {
+    background: white;
+    z-index: 10;
+    border-radius: 8px;
+    box-shadow: 2px 3px black;
 
     .search_modal {
       display: block;
     }
 
     + p {
-      margin-top: 6rem;
+      margin-top: 5rem;
+    }
+
+    .bcc-search-wrapper {
+
     }
 
   }

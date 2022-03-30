@@ -1,88 +1,151 @@
 @import "bcc-variables";
+@import "bcc-mixins";
+@import "bcc-search";
+@import "rouge-github";
 
-body {
-    font-family: "Archivo", Helvetica, Arial, sans-serif;
-}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 
-.main-content {
+  body {
+    font-family: $text-sans;
 
-    position: relative;
-
-    h1, h2, h3, h4 {
-        font-weight: 900;
+    #skip-to-content {
+      display: none;
     }
 
-    h2 {
-        color: $bcc-neutral-black;
-    }
+    .logo {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      background: $bcc-dark-green;
 
-    h3, h4, h5, h6 {
-        color: lighten($bcc-neutral-black, 20%);
-        font-weight: bold;
-    }
-}
-
-h2.project-tagline {
-    font-family: "IBM Plex Serif", Helvetica, Arial, sans-serif;
-}
-
-.page-header {
-    border-radius: 5px;
-    margin: 0px 20px;
-    padding: 40px;
-}
-
-.breadcrumbs {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-}
-
-.logo {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-
-    img {
+      img {
         max-width: 180px;
         padding: 20px;
+      }
     }
-}
 
-.btn {
-    background-color: $bcc-neutral-black;
-    border-color: $bcc-light-green;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 0.3rem;
-    color: $bcc-light-green;
-    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+    .page-header {
+      background: #fafafa;
+      padding: 3rem 0;
 
-    &:hover {
+      > div {
+        max-width: 1440px;
+        margin: auto;
+
+        h1 {
+          font-size: 4rem;
+          padding: 1rem 0;
+        }
+
+        h2 {
+          font-family: $text-serif;
+          font-weight: 400;
+          padding: 1rem 0;
+        }
+
+        .breadcrumbs {
+          text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 20px;
+        }
+
+      }
+
+    }
+
+    .main-content {
+
+      max-width: 1440px;
+      position: relative;
+      margin: 4rem auto;
+
+      p {
+        padding: 0.5rem 0;
+      }
+
+      h1, h2, h3, h4 {
+        font-weight: 900;
+        padding: 2rem 0 1rem;
+      }
+
+      h2 {
+        color: $bcc-neutral-black;
+      }
+
+      h3, h4, h5, h6 {
+        color: lighten($bcc-neutral-black, 20%);
+        font-weight: bold;
+        padding: 1rem 0 0.5rem;
+
+      }
+
+      ul, ol {
+        padding-left: 15px;
+      }
+
+      div.highlight {
+        max-width: 500px;
+        border-radius: 4px;
+        border: solid 1px;
+        padding: 10px;
+        margin: 0.5rem 0;
+      }
+
+      .highlight {
+        overflow: auto;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+
+    }
+
+
+    .btn {
+      background-color: $bcc-neutral-black;
+      border-color: $bcc-light-green;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 0.3rem;
+      color: $bcc-light-green;
+      transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+
+      &:hover {
         color: lighten($bcc-light-green, 40%);
         text-decoration: none;
         background-color: lighten($bcc-neutral-black, 20%);
         border-color: lighten($bcc-light-green, 40%);
+      }
     }
-}
 
-#markdown-toc {
-    padding: 20px 40px;
-    background-color: $bcc-light-green;
-    font-size: 0.9em;
-    border-radius: 5px;
-    border: solid 2px $bcc-dark-green;
+    #markdown-toc {
+      padding: 20px 40px;
+      background-color: $bcc-light-green;
+      font-size: 0.9em;
+      border-radius: 5px;
+      border: solid 2px $bcc-dark-green;
 
-    @include large {
+      @include large {
         float: right;
-    }
+      }
 
-    @include medium {
+      @include medium {
         float: right;
-    }
+      }
 
-    @include small {
+      @include small {
         font-size: 1em;
+      }
     }
+
+  }
 }
