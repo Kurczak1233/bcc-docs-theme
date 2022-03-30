@@ -21,7 +21,7 @@ async function searchInFiles() {
     const searchInput = document.getElementById("search_input");
     const searchInputValue = searchInput.value;
 
-    const searchUrl = `https://api.github.com/search/code?q=${searchInputValue}+in:file+language:markdown+org:bcc-code&per_page=100&page=1`;
+    const searchUrl = `https://api.github.com/search/code?q=${searchInputValue}+in:file+language:markdown+repo:bcc-code/bcc-code.github.io`;
 
     const getMarkdownData = await fetch(searchUrl).then(response => response.json()).catch(error => console.log(error));
     console.log(getMarkdownData);
@@ -34,26 +34,29 @@ async function searchInFiles() {
         const markdownFilePath = data.path;
 
         const sliceFilePath = markdownFilePath.slice(0, -3);
+        // const markdownToHtml = `${sliceFilePath}`;
 
-        const markdownToHtml = `${sliceFilePath}.html`;
+        const markdownToHtml = `/${markdownRepositoryName}/${sliceFilePath}`;
+        let markdownPageUrl;
 
-        const markdownPageUrl = String(markdownToHtml).replace(/^docs/, '')
+        if (sliceFilePath.match('docs')) {
+            markdownPageUrl = String(markdownToHtml).replace(/^docs/, '');
+        } else if(sliceFilePath.match('bcc-code.github.io')) {
+            markdownPageUrl = String(markdownToHtml).replace(/^bcc-code.github.io/, '');
+        } else {
+            markdownPageUrl = markdownToHtml;
+        }
 
         const createLocation = document.getElementById("search_results")
         let createListItem = document.createElement("li");
         let searchSuggestion = document.createElement("a");
-        let searchSuggestionRepository = document.createElement("span");
 
         createListItem.className = "search_suggestion";
 
         searchSuggestion.setAttribute("href", `${markdownPageUrl}`);
         searchSuggestion.innerText = `${markdownFileName}`;
 
-        searchSuggestionRepository.className = "search_suggestion";
-        searchSuggestionRepository.innerText = `${markdownRepositoryName}`;
-
         createLocation.appendChild(createListItem).appendChild(searchSuggestion);
-        createLocation.appendChild(createListItem).appendChild(searchSuggestion).appendChild(searchSuggestionRepository);
 
 
     }
