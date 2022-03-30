@@ -38,14 +38,7 @@ async function searchInFiles() {
 
         const markdownToHtml = `/${markdownRepositoryName}/${sliceFilePath}`;
         let markdownPageUrl;
-
-        if (sliceFilePath.match('docs')) {
-            markdownPageUrl = String(markdownToHtml).replace(/^docs/, '');
-        } else if(sliceFilePath.match('bcc-code.github.io')) {
-            markdownPageUrl = String(markdownToHtml).replace(/^bcc-code.github.io/, '');
-        } else {
-            markdownPageUrl = markdownToHtml;
-        }
+        markdownPageUrl = String(markdownToHtml).replace(/^bcc-code\.github\.io/, '');
 
         const createLocation = document.getElementById("search_results")
         let createListItem = document.createElement("li");
