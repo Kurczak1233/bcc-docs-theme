@@ -11,6 +11,7 @@
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <script src="{{ '/assets/script/search.js?v=' | append: site.github.build_revision | relative_url }}"></script>
     <title></title>
     {% include head-custom.html %}
 
@@ -39,9 +40,13 @@
 
 {% include breadcrumbs.html %}
 
-{% include search.html %}
 
 <main id="content" class="main-content" role="main">
+
+
+<!--    {% include search.html %}-->
+    {% include search-results-modal.html %}
+
     {{ content }}
 
     <footer class="site-footer">
