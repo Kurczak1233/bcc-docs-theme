@@ -34,7 +34,7 @@
       > div {
         max-width: 1440px;
         margin: auto;
-
+text-align: center;
         h1 {
           font-size: 4rem;
           padding: 1rem 0;
@@ -67,6 +67,10 @@
         padding: 0.5rem 0;
       }
 
+      a{
+        color: $bcc-dark-green-lighter;
+      }
+
       h1, h2, h3, h4 {
         font-weight: 900;
         padding: 2rem 0 1rem;
@@ -85,6 +89,14 @@
 
       ul, ol {
         padding-left: 15px;
+
+        li{
+          padding: 0.5rem 0;
+          p{
+            padding: 0;
+          }
+        }
+
       }
 
       div.highlight {
