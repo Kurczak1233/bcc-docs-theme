@@ -34,11 +34,11 @@ async function searchInFiles() {
         const markdownFilePath = data.path;
 
         const sliceFilePath = markdownFilePath.slice(0, -3);
-        // const markdownToHtml = `${sliceFilePath}`;
 
-        const markdownToHtml = `/${markdownRepositoryName}/${sliceFilePath}`;
-        let markdownPageUrl;
-        markdownPageUrl = String(markdownToHtml).replace(/^bcc-code\.github\.io/, '');
+        // const markdownToHtml = `/${markdownRepositoryName}/${sliceFilePath}`;
+        const markdownPageUrl = `/${sliceFilePath}`;
+        // let markdownPageUrl;
+        // markdownPageUrl = String(markdownToHtml).replace(/^bcc-code\.github\.io/, '');
 
         const createLocation = document.getElementById("search_results")
         let createListItem = document.createElement("li");
