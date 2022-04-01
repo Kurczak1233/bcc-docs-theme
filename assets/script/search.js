@@ -21,7 +21,8 @@ async function searchInFiles() {
     const searchInput = document.getElementById("search_input");
     const searchInputValue = searchInput.value;
 
-    const searchUrl = `https://api.github.com/search/code?q=${searchInputValue}+in:file+language:markdown+repo:bcc-code/bcc-code.github.io`;
+    // const searchUrl = `https://api.github.com/search/code?q=${searchInputValue}+in:file+language:markdown+repo:bcc-code/bcc-code.github.io`;
+    const searchUrl = `https://api.github.com/search/code?q=${searchInputValue}+in:file+language:markdown+organisation:bcc-code`;
 
     const getMarkdownData = await fetch(searchUrl).then(response => response.json()).catch(error => console.log(error));
     console.log(getMarkdownData);
