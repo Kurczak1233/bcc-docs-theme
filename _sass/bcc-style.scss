@@ -133,8 +133,18 @@
       }
 
 
-    }
+      @include medium {
+        padding: 0 32px;
+        margin: 32px auto;
+      }
 
+
+      @include small {
+        padding: 0 16px;
+        margin: 16px auto;
+      }
+
+    }
 
     .btn {
       background-color: $bcc-neutral-black;
