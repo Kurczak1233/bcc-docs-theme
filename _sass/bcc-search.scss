@@ -1,115 +1,121 @@
-﻿.bcc-search-wrapper {
-  color: $body-text-color;
-  display: grid;
-  grid-template-rows: 1fr;
+﻿
+#search {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 500px;
   margin: auto;
-  gap: 5px;
-  line-height: 150%;
-  max-width: 500px;
+  transition: 0.3s;
+  box-shadow: 2px 3px transparent, -2px -2px 4px transparent;
+  border-radius: 8px;
+  z-index: 10;
 
-  label {
-    display: none;
-  }
+  .bcc-search-wrapper {
+    color: $body-text-color;
+    display: grid;
+    grid-template-rows: 1fr;
+    margin: auto;
+    gap: 5px;
+    line-height: 150%;
+    max-width: 500px;
 
-
-  #search_suggestions_wrapper {
-
-    input {
-      border: 1px solid $border-color;
-      padding: 10px;
-      border-radius: $border-radius;
-      height: 45px;
-      width: 100%;
-      cursor: pointer;
-      transition: 0.5s;
-      font-size: 1em;
-
-      &.input_searching {
-
-        + #search_suggestions_section {
-          border: 1px solid $border-color;
-        }
-
-        border-radius: $border-radius $border-radius 0 0;
-
-      }
-
-      &:focus {
-        + #search_suggestions_section {
-          border: 1px solid $border-color;
-          max-height: 350px;
-        }
-
-      }
+    label {
+      display: none;
     }
 
-    #search_suggestions_section {
-      z-index: 11;
-      max-height: 0;
-      transition: 0.5s;
-      position: absolute;
-      background: white;
-      width: 468px;
-      margin-top: -2px;
-      border: 0 solid $border-color;
-      border-radius: 0 0 $border-radius $border-radius;
-      overflow-x: auto;
 
-      &:hover {
-        max-height: 350px;
-        border: 1px solid $border-color;
+    #search_suggestions_wrapper {
 
-      }
+      form {
+        position: relative;
 
-      ul {
+        #search_glass {
+          position: absolute;
+          right: 15px;
+          top: 0;
+          transform: translate(0, 50%);
+          height: 20px;
 
-        list-style: none;
-        padding: 0;
-        margin: 0;
+          i {
+            font-size: 20px;
 
-
-        > li {
-
-          &.search_button {
-            padding: 5px 10px;
-            margin: 0;
-            cursor: pointer;
-            font-size: 16px;
-            background-color: #fafafa;
-
-            a {
-
-              display: block;
-              white-space: nowrap;
-              width: 100%;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              color: $bcc-neutral-black;
-
-              &:hover {
-                text-decoration: none;
-              }
-
-            }
-
-            &:hover {
-              background-color: #f0f0f0;
+            button {
+              cursor: pointer;
+              position: absolute;
+              left: 0;
+              top: 0;
+              bottom: 0;
+              right: 0;
+              padding: 0;
+              margin: 0;
+              opacity: 0;
             }
           }
+        }
+
+        input {
+          border: 1px solid $border-color;
+          padding: 10px;
+          border-radius: $border-radius;
+          height: 45px;
+          width: 100%;
+          cursor: text;
+          transition: 0.5s;
+          font-size: 1em;
+
+          &.input_searching {
+
+            + #search_suggestions_section {
+              border: 1px solid $border-color;
+            }
+
+            border-radius: $border-radius $border-radius 0 0;
+
+          }
+
+          &:focus {
+            + #search_suggestions_section {
+              border: 1px solid $border-color;
+              max-height: 350px;
+            }
+
+          }
+        }
+      }
+
+      #search_suggestions_section {
+        z-index: 11;
+        max-height: 0;
+        transition: 0.5s;
+        position: absolute;
+        background: white;
+        width: 468px;
+        margin-top: -2px;
+        border: 0 solid $border-color;
+        border-radius: 0 0 $border-radius $border-radius;
+        overflow-x: auto;
+
+        &:hover {
+          max-height: 350px;
+          border: 1px solid $border-color;
+
+        }
+
+        ul {
+
+          list-style: none;
+          padding: 0;
+          margin: 0;
 
 
-          ul {
+          > li {
 
-            li {
+            &.search_button {
               padding: 5px 10px;
               margin: 0;
               cursor: pointer;
-
-              overflow: hidden;
-              font-size: 14px;
-              //max-width: 205px;
-              text-overflow: ellipsis;
-              word-break: break-all;
+              font-size: 16px;
+              background-color: #fafafa;
 
               a {
 
@@ -124,79 +130,138 @@
                   text-decoration: none;
                 }
 
-
-                span {
-                  display: block;
-                  font-size: 12px;
-                  margin: -5px 0;
-                  color: $bcc-warm-grey-darker;
-                  //color: grey;
-                }
-
               }
 
               &:hover {
                 background-color: #f0f0f0;
               }
             }
-          }
 
+
+            ul {
+
+              li {
+                padding: 5px 10px;
+                margin: 0;
+                cursor: pointer;
+
+                overflow: hidden;
+                font-size: 14px;
+                //max-width: 205px;
+                text-overflow: ellipsis;
+                word-break: break-all;
+
+                a {
+
+                  display: block;
+                  white-space: nowrap;
+                  width: 100%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  color: $bcc-neutral-black;
+
+                  &:hover {
+                    text-decoration: none;
+                  }
+
+
+                  span {
+                    display: block;
+                    font-size: 12px;
+                    margin: -5px 0;
+                    color: $bcc-warm-grey-darker;
+                    //color: grey;
+                  }
+
+                }
+
+                &:hover {
+                  background-color: #f0f0f0;
+                }
+              }
+            }
+
+          }
         }
+
       }
 
+
     }
-
   }
-}
-
-#search {
-  position: relative;
-  max-width: 500px;
-  margin: auto;
 
   .search_modal {
-    position: absolute;
-    overflow: hidden;
-    margin: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 2px 3px black;
-    padding: 0 2rem;
+    max-height: 0;
+    opacity: 0;
+    transition: 0.3s;
+    overflow-y: hidden;
+    overflow-x: auto;
 
-    display: none;
+    > div {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      margin: 0.5rem 0;
+      border-bottom: 1px solid;
 
-    h2 {
-      padding: 0;
-      margin: 0;
-    }
+      h2 {
+        padding: 0;
+        margin: 0;
+      }
 
-    ul {
-      list-style: none;
-      height: 200px;
-      overflow: auto;
-      margin-bottom: 2rem;
-      text-align: left;
-      -ms-overflow-style: none; /* IE and Edge */
-      scrollbar-width: none; /* Firefox */
-      li {
+      span {
+        text-decoration: underline;
+        cursor: pointer;
       }
     }
 
-    &::-webkit-scrollbar {
-      display: none;
+    ul#search_results {
+      list-style: none;
+      height: 200px;
+      overflow-x: hidden;
+      text-align: left;
+      overflow-wrap: break-word;
+
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+
+
+      li {
+        display: flex;
+        flex-direction: column;
+        margin: 0 0 12px;
+
+        a {
+          color: $bcc-dark-green;
+          text-decoration: none;
+        }
+
+        .result_repository {
+          font-size: 14px;
+          background-color: $bcc-warm-grey-lighter;
+          color: $bcc-neutral-black;
+          width: fit-content;
+          padding: 2px 4px;
+          border-radius: 4px;
+        }
+
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
+
+
   }
 
   &.active {
     background: white;
-    z-index: 10;
-    border-radius: 8px;
-    box-shadow: 2px 3px black;
+    box-shadow: 2px 3px #222, -2px -2px 4px #2222;
 
     .search_modal {
-      display: block;
+      max-height: 450px;
+      opacity: 1;
     }
 
     + p {
@@ -224,24 +289,4 @@
     font-size: 1rem;
   }
 
-  .search_modal {
-    max-height: 450px;
-    overflow-x: auto;
-    display: none;
-
-    > div {
-      display: flex;
-      justify-content: space-between;
-      margin: 1rem 0;
-
-      h2 {
-        margin: 0;
-      }
-
-      span {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-    }
-  }
 }
