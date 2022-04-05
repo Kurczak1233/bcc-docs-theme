@@ -30,34 +30,33 @@ async function searchInFiles() {
 
         const markdownRepositoryData = data.repository;
         const markdownRepositoryName = markdownRepositoryData.name;
-        const markdownFileName = data.name;
         const markdownFilePath = data.path;
         const markdownHtmlUrl = data.html_url;
         const markdownRepo = data.repository;
+        const markdownRepoName = data.repository.name;
         const markdownRepoUrl = markdownRepo.html_url;
 
         const sliceFilePath = markdownFilePath.slice(0, -3);
 
-
         let markdownPageUrl = String(sliceFilePath);
-        const findDocs = 'docs';
-        const foundDocs = markdownPageUrl.match(findDocs);
-        const findRepo = 'docs';
-        const foundRepo = markdownPageUrl.match(findRepo);
 
-        if (foundDocs !== null && foundDocs[0] === findDocs) {
+        if (markdownPageUrl.indexOf("docs") !== -1) {
 
             markdownPageUrl = String(sliceFilePath).replace(/^docs/, markdownRepositoryName);
 
-        } else if (foundRepo !== null && foundRepo[0] === findRepo) {
+        } else if (markdownRepoName === "bcc-code.github.io") {
+            console.log("bcc-code.github.io")
 
-            markdownPageUrl = String(sliceFilePath).replace(/^bcc-code.github.io/, "");
+            markdownPageUrl = String(sliceFilePath).replace(/^bcc-code.github.io/, " ");
 
         } else {
 
-            markdownPageUrl = markdownHtmlUrl
+            markdownPageUrl = markdownHtmlUrl;
 
         }
+
+        console.log(markdownPageUrl)
+
 
 
         const createLocation = document.getElementById("search_results")
