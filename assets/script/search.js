@@ -36,7 +36,8 @@ async function searchInFiles() {
         const markdownRepoName = data.repository.name;
         const markdownRepoUrl = markdownRepo.html_url;
 
-        const sliceFilePath = markdownFilePath.slice(0, -3);
+        let sliceFilePath = markdownFilePath.slice(0, -3);
+        sliceFilePath = sliceFilePath.replace("/index", "");
 
         let markdownPageUrl = String(sliceFilePath);
 
@@ -45,7 +46,6 @@ async function searchInFiles() {
             markdownPageUrl = String(sliceFilePath).replace(/^docs/, markdownRepositoryName);
 
         } else if (markdownRepoName === "bcc-code.github.io") {
-            console.log("bcc-code.github.io")
 
             markdownPageUrl = String(sliceFilePath).replace(/^bcc-code.github.io/, " ");
 
@@ -54,8 +54,6 @@ async function searchInFiles() {
             markdownPageUrl = markdownHtmlUrl;
 
         }
-
-        console.log(markdownPageUrl)
 
 
 
@@ -77,6 +75,15 @@ async function searchInFiles() {
         createLocation.appendChild(createListItem).appendChild(searchSuggestion);
         createLocation.appendChild(createListItem).appendChild(repoSpan);
 
+        const buttonCreateLocation = document.getElementById("content-button")
+        let mdEditButton = document.createElement("a")
+
+        let newMarkdownHtmlUrl = String(markdownHtmlUrl).replace(/^blob/, " ");
+        console.log(newMarkdownHtmlUrl);
+
+        mdEditButton.setAttribute("href", `${markdownHtmlUrl}`);
+        mdEditButton.innerText = `${markdownHtmlUrl}`;
+        buttonCreateLocation.appendChild(mdEditButton);
 
     }
 
