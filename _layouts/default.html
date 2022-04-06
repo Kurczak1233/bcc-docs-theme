@@ -52,13 +52,20 @@
 
     {% if page.url contains "projects" %}
 
-        {% assign projectRepo = page.path | split:"/" %}
+    {% assign projectRepo = page.path | split:"/" %}
+
+    {% if page.url == "/projects/" %}
+        {% assign projectsRepo = "bcc-code.github.io" %}
+
+    {% else %}
         {% assign projectsRepo = projectRepo | slice: 1 %}
-        <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/docs/{{page.name}}">Edit this page</a>
+    {% endif %}
+
+    <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/docs/{{page.name}}">Edit this page</a>
 
     {% else %}
 
-        <a href="{{site.github.repository_url}}/edit/master/{{page.path}}">Edit this page</a>
+    <a href="{{site.github.repository_url}}/edit/master/{{page.path}}">Edit this page</a>
 
     {% endif %}
 
