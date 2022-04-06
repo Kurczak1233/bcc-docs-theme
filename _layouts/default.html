@@ -15,6 +15,8 @@
           href="{{ '/assets/images/favicon.ico?v=' | append: site.github.build_revision | relative_url }}">
 
     <script src="{{ '/assets/script/search.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+    <script src="{{ '/assets/script/edit.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+
     <script src="https://kit.fontawesome.com/e79986d204.js" crossorigin="anonymous"></script>
     <title></title>
     {% include head-custom.html %}
@@ -46,13 +48,12 @@
 
 
 <main id="content" class="main-content" role="main">
+    <a href="{{site.github.repository_url}}/blob/gh-pages/{{page.path}}">Edit this page</a>
 
 
     {{ content }}
 
     <div id="content-button"></div>
-
-    <a href="{{ site.github.repository_url }}/tree/master/{{ page.relative_path }}">Edit</a>
 
 </main>
 
