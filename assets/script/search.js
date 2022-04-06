@@ -56,7 +56,6 @@ async function searchInFiles() {
         }
 
 
-
         const createLocation = document.getElementById("search_results")
         let createListItem = document.createElement("li");
         let searchSuggestion = document.createElement("a");
@@ -75,15 +74,6 @@ async function searchInFiles() {
         createLocation.appendChild(createListItem).appendChild(searchSuggestion);
         createLocation.appendChild(createListItem).appendChild(repoSpan);
 
-        const buttonCreateLocation = document.getElementById("content-button")
-        let mdEditButton = document.createElement("a")
-
-        let newMarkdownHtmlUrl = String(markdownHtmlUrl).replace(/^blob/, " ");
-        console.log(newMarkdownHtmlUrl);
-
-        mdEditButton.setAttribute("href", `${markdownHtmlUrl}`);
-        mdEditButton.innerText = `${markdownHtmlUrl}`;
-        buttonCreateLocation.appendChild(mdEditButton);
 
     }
 
