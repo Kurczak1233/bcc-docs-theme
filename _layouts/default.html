@@ -60,10 +60,12 @@
         {% else %}
             {% assign projectsRepo = projectRepo | slice: 1 %}
 
-            {% if projectsRepo == "bcc-membership-docs" %}
+            {% if page.url == "/projects/bcc-membership-docs/" %}
                 <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/{{page.name}}">Edit this page</a>
+<!--                <a href="https://github.com/bcc-code/bcc-membership-docs/edit/master/index.md">Edit this page</a>-->
             {% else %}
                 <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/docs/{{page.name}}">Edit this page</a>
+
             {% endif %}
 
         {% endif %}
