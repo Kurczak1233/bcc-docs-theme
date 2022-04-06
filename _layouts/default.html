@@ -15,7 +15,6 @@
           href="{{ '/assets/images/favicon.ico?v=' | append: site.github.build_revision | relative_url }}">
 
     <script src="{{ '/assets/script/search.js?v=' | append: site.github.build_revision | relative_url }}"></script>
-    <script src="{{ '/assets/script/edit.js?v=' | append: site.github.build_revision | relative_url }}"></script>
 
     <script src="https://kit.fontawesome.com/e79986d204.js" crossorigin="anonymous"></script>
     <title></title>
@@ -56,12 +55,18 @@
 
     {% if page.url == "/projects/" %}
         {% assign projectsRepo = "bcc-code.github.io" %}
-
     {% else %}
         {% assign projectsRepo = projectRepo | slice: 1 %}
     {% endif %}
 
-    <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/docs/{{page.name}}">Edit this page</a>
+    {% if projectsRepo == "bcc-membership-docs" %}
+        <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/{{page.name}}">Edit this page</a>
+    {% else if  projectsRepo == "bcc-code.github.io" %}
+        <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/{{page.path}}">Edit this page</a>
+    {% else %}
+        <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/docs/{{page.name}}">Edit this page</a>
+    {% endif %}
+
 
     {% else %}
 
