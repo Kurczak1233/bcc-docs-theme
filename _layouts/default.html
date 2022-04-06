@@ -11,7 +11,8 @@
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="icon" type="image/x-icon"
+          href="{{ '/assets/images/favicon.ico?v=' | append: site.github.build_revision | relative_url }}">
 
     <script src="{{ '/assets/script/search.js?v=' | append: site.github.build_revision | relative_url }}"></script>
     <script src="https://kit.fontawesome.com/e79986d204.js" crossorigin="anonymous"></script>
@@ -25,8 +26,7 @@
 <a id="skip-to-content" href="#content">Skip to the content.</a>
 
 <div class="logo">
-    <a href="/" title="BCC Developer Portal"><img alt="logo"
-                                                  src="{{ '/assets/images/logo-wt.svg?v=' | append: site.github.build_revision | relative_url }}"></a>
+    <a href="/" title="BCC Developer Portal"><img alt="logo" src="{{ '/assets/images/logo-wt.svg?v=' | append: site.github.build_revision | relative_url }}"></a>
 </div>
 
 
@@ -48,15 +48,12 @@
 <main id="content" class="main-content" role="main">
 
 
-
     {{ content }}
 
-    <footer class="site-footer">
-        {% if site.github.is_project_page %}
-        <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a
-                href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
-        {% endif %}
-    </footer>
+    <div id="content-button"></div>
+
+    <a href="{{ site.github.repository_url }}/tree/master/{{ page.relative_path }}">Edit</a>
+
 </main>
 
 
