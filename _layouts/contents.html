@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+<head>
+    <meta charset="UTF-8">
+
+    {% seo %}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" as="style"
+          type="text/css" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    <link rel="icon" type="image/x-icon"
+          href="{{ '/assets/images/favicon.ico?v=' | append: site.github.build_revision | relative_url }}">
+
+    <script src="{{ '/assets/script/search.js?v=' | append: site.github.build_revision | relative_url }}"></script>
+
+    <script src="https://kit.fontawesome.com/e79986d204.js" crossorigin="anonymous"></script>
+    <title></title>
+    {% include head-custom.html %}
+
+</head>
+<body>
+
+
+<a id="skip-to-content" href="#content">Skip to the content.</a>
+
+<div class="logo">
+    <a href="/" title="BCC Developer Portal"><img alt="logo"
+                                                  src="{{ '/assets/images/logo-wt.svg?v=' | append: site.github.build_revision | relative_url }}"></a>
+</div>
+
+
+<header class="page-header" role="banner">
+    <div>
+        <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+        <h2 class="project-tagline">{{ page.description | default: site.description | default:
+            site.github.project_tagline
+            }}</h2>
+        {% include breadcrumbs.html %}
+
+        {% include search-results-modal.html %}
+
+
+    </div>
+</header>
+
+
+<main id="content" class="main-content" role="main">
+    <ul>
+        {% if page.url =="/projects/"%}
+            {% include collection-projects.html %}
+        {% endif%}
+    </ul>
+
+    {% include edit-page.html %}
+
+</main>
+
+
+</body>
+</html>
