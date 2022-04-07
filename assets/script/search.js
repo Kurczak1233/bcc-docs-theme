@@ -47,7 +47,7 @@ async function searchInFiles() {
 
         } else if (markdownRepoName === "bcc-code.github.io") {
 
-            markdownPageUrl = String(sliceFilePath).replace(/^bcc-code.github.io/, " ");
+            markdownPageUrl = window.location.origin + "/" + String(sliceFilePath).replace(/^bcc-code.github.io/, " ");
 
         } else {
 
