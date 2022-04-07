@@ -1,5 +1,4 @@
-﻿
-#search {
+﻿#search {
   position: absolute;
   left: 0;
   right: 0;
@@ -226,14 +225,22 @@
       scrollbar-width: none; /* Firefox */
 
 
-      li {
+      li.search_suggestion {
         display: flex;
         flex-direction: column;
         margin: 0 0 12px;
 
         a {
-          color: $bcc-dark-green;
           text-decoration: none;
+
+          &:first-child {
+            color: $bcc-dark-green;
+            opacity: 0.75;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
         }
 
         .result_repository {
@@ -243,6 +250,11 @@
           width: fit-content;
           padding: 2px 4px;
           border-radius: 4px;
+          opacity: 0.5;
+
+          &:hover {
+            opacity: 0.85;
+          }
         }
 
       }
@@ -287,6 +299,34 @@
   @include small {
     padding: 1rem;
     font-size: 1rem;
+  }
+
+}
+
+#edit-content {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 4px 8px;
+  background: $bcc-light-green;
+  border-radius: 4px;
+  opacity: 0.75;
+  transition: 0.1s;
+  cursor: pointer;
+
+  a {
+    text-decoration: none;
+    color: $bcc-dark-green;
+
+  }
+
+  i {
+    font-size: 11pt;
+    color: $bcc-dark-green;
+  }
+
+  &:hover{
+    opacity: 1;
   }
 
 }

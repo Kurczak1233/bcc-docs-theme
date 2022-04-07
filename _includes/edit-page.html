@@ -1,30 +1,33 @@
-{% if page.url contains "projects" %}
+<section id="edit-content">
+    {% if page.url contains "projects" %}
 
-    {% assign projectRepo = page.path | split:"/" %}
+        {% assign projectRepo = page.path | split:"/" %}
 
-    {% if page.url == "/projects/" %}
-        {% assign projectsRepo = "bcc-code.github.io" %}
-        <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/{{page.path}}">Edit this page</a>
-
-    {% else %}
-        {% assign projectsRepo = projectRepo | slice: 1 %}
-
-        {% if page.url == "/projects/bcc-membership-docs/" %}
-            <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/{{page.name}}">Edit this page</a>
-
-        {% else if page.url == "/projects/bmm-app/" %}
-            <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/main/docs/{{page.name}}">Edit this page</a>
+        {% if page.url == "/projects/" %}
+            {% assign projectsRepo = "bcc-code.github.io" %}
+            <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/{{page.path}}">Edit this page</a>
 
         {% else %}
-            <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/docs/{{page.name}}">Edit this page</a>
+            {% assign projectsRepo = projectRepo | slice: 1 %}
+
+            {% if page.url == "/projects/bcc-membership-docs/" %}
+                <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/{{page.name}}">Edit this page</a>
+
+            {% else if page.url == "/projects/bmm-app/" %}
+                <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/main/docs/{{page.name}}">Edit this page</a>
+
+            {% else %}
+                <a href="https://github.com/bcc-code/{{ projectsRepo }}/edit/master/docs/{{page.name}}">Edit this page</a>
+
+            {% endif %}
 
         {% endif %}
 
+
+    {% else %}
+
+        <a href="{{site.github.repository_url}}/edit/master/{{page.path}}">Edit this page</a>
+
     {% endif %}
-
-
-{% else %}
-
-    <a href="{{site.github.repository_url}}/edit/master/{{page.path}}">Edit this page</a>
-
-{% endif %}
+    <i class="fa-solid fa-pencil"></i>
+</section>
