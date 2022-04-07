@@ -49,9 +49,32 @@
 
 <main id="content" class="main-content" role="main">
     <ul class="content-page-menu">
-        {% if page.url =="/projects/"%}
+        {% if page.url == "/projects/"%}
             {% include collection-projects.html %}
         {% endif%}
+
+        {% if page.url == "/projects/index.html || page.url == "/projects/index || page.url == "/projects/ || page.url == "/projects" %}
+
+            {% include collection-projects.html %}
+
+        {% else if page.url == "/guides/index.html || page.url == "/guides/index || page.url == "/guides/ || page.url == "/guides" %}
+
+            {% include collection-guides.html %}
+
+        {% else if page.url == "/topics/index.html || page.url == "/topics/index || page.url == "/topics/ || page.url == "/topics" %}
+
+            {% include collection-topics.html %}
+
+        {% else if page.url == "/docs/index.html || page.url == "/docs/index || page.url == "/docs/ || page.url == "/docs" %}
+
+            {% include collection-docs.html %}
+
+        {% else if page.url == "/plugins/index.html || page.url == "/plugins/index || page.url == "/plugins/ || page.url == "/plugins" %}
+
+            {% include collection-plugins.html %}
+
+        {% endif %}
+
     </ul>
 
     {% include edit-page.html %}
