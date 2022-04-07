@@ -49,11 +49,13 @@
 
 <main id="content" class="main-content" role="main">
 
+    {% for project in site.projects %}
+        <h2>{{ project.title }}</h2>
+    {% endfor %}
+
     {{ content }}
 
     {% include edit-page.html %}
-
-    <div id="content-button"></div>
 
 </main>
 

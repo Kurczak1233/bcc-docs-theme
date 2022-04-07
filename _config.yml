@@ -5,6 +5,19 @@ google_analytics:
 theme: jekyll-theme-cayman
 kramdown:
   parse_block_html: true
-  
+
+collections:
+  projects:
+    output: true
+  docs:
+    output: true
+  guides:
+    output: true
+  topics:
+    output: true
+  plugins:
+    output: true
+
+
 plugins:
   - jekyll-tsc
