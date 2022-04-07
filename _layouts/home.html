@@ -50,13 +50,11 @@
 <main id="content" class="main-content" role="main">
     {{ content }}
 
-    <ul id="content-list">
-        {% include collection-guides.html %}
-        {% include collection-topics.html %}
-        {% include collection-docs.html %}
-        {% include collection-projects.html %}
-        {% include collection-plugins.html %}
-    </ul>
+    {% include collection-guides.html %}
+    {% include collection-topics.html %}
+    {% include collection-docs.html %}
+    {% include collection-projects.html %}
+    {% include collection-plugins.html %}
 
     {% include edit-page.html %}
 

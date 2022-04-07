@@ -1,29 +1,37 @@
-{% for topic in site.topics %}
-{% if page.url == "/topics/index.html" %}
-{% if topic.title == "topics Contents" %}
-<li>
-    <h2>Topics</h2>
-</li>
-{% else %}
+<div>
+    {% for topic in site.topics %}
 
-<li>
-    <a href="{{topic.url}}">{{ topic.title }}</a>
-</li>
+        {% if page.url == "/topics/index.html" %}
 
-{% endif %}
+            {% if topic.title == "Topics Contents" %}
+                    <h2>Topics</h2>
 
-{% else %}
-{% if topic.title == "Topics Contents" %}
-<li>
-    <a href="{{topic.url}}"><h2>Topics</h2></a>
-</li>
-{% else %}
+            {% endif %}
 
-<li>
-    <a href="{{topic.url}}">{{ topic.title }}</a>
-</li>
+        {% else %}
 
-{% endif %}
-{% endif %}
+            {% if topic.title == "Topics Contents" %}
+                <h2><a href="{{topic.url}}">Topics</a></h2>
+            {% endif %}
 
-{% endfor %}
+        {% endif %}
+
+    {% endfor %}
+
+    <ul class="content-list collection-topics">
+
+        {% for topic in site.topics %}
+
+
+            {% if topic.title != "Topics Contents" %}
+
+            <li>
+                <a href="{{topic.url}}">{{ topic.title }}</a>
+            </li>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </ul>
+</div>

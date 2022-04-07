@@ -1,29 +1,36 @@
-{% for plugin in site.plugins %}
-{% if page.url == "/plugins/index.html" %}
-{% if plugin.title == "Plugins Contents" %}
-<li>
-    <h2>Plugins</h2>
-</li>
-{% else %}
+<div>
+    {% for plugin in site.plugins %}
 
-<li>
-    <a href="{{plugin.url}}">{{ plugin.title }}</a>
-</li>
+        {% if page.url == "/plugins/index.html" %}
 
-{% endif %}
+            {% if plugin.title == "Plugins Contents" %}
+                    <h2>Plugins</h2>
 
-{% else %}
-{% if plugin.title == "Plugins Contents" %}
-<li>
-    <a href="{{plugin.url}}"><h2>Plugins</h2></a>
-</li>
-{% else %}
+            {% endif %}
 
-<li>
-    <a href="{{plugin.url}}">{{ plugin.title }}</a>
-</li>
+        {% else %}
 
-{% endif %}
-{% endif %}
+            {% if plugin.title == "Plugins Contents" %}
+                <h2><a href="{{plugin.url}}">Plugins</a></h2>
+            {% endif %}
 
-{% endfor %}
+        {% endif %}
+
+    {% endfor %}
+
+    <ul class="content-list collection-plugins">
+
+        {% for plugin in site.plugins %}
+
+            {% if plugin.title != "Plugins Contents" %}
+
+            <li>
+                <a href="{{plugin.url}}">{{ plugin.title }}</a>
+            </li>
+
+            {% endif %}
+
+        {% endfor %}
+
+    </ul>
+</div>
