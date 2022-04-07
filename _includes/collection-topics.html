@@ -24,13 +24,11 @@
 
 
             {% if topic.title != "Topics Contents" %}
-                {% if topic.title != blank %}
 
                     <li>
                         <a href="{{topic.url}}">{{ topic.title }}</a>
                     </li>
 
-                {% endif %}
             {% endif %}
 
         {% endfor %}
