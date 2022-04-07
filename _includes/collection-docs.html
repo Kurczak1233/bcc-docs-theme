@@ -1,29 +1,29 @@
 {% for doc in site.docs %}
-    {% if page.url == "/docs/index.html" %}
-        {% if doc.title == "Docs Contents" %}
+{% if page.url == "/docs/index.html" %}
+{% if doc.title == "Docs Contents" %}
+<li>
+    <h2>Documentation</h2>
+</li>
+{% else %}
 
-                <h2>{{ doc.title }}</h2>
+<li>
+    <a href="{{doc.url}}">{{ doc.title }}</a>
+</li>
 
-        {% else %}
+{% endif %}
 
-            <li>
-                <a href="{{doc.url}}">Documentation</a>
-            </li>
+{% else %}
+{% if doc.title == "Docs Contents" %}
+<li>
+    <a href="{{doc.url}}"><h2>Documentation</h2></a>
+</li>
+{% else %}
 
-        {% endif %}
+<li>
+    <a href="{{doc.url}}">{{ doc.title }}</a>
+</li>
 
-    {% else %}
-        {% if doc.title == "Docs Contents" %}
-
-            <a href="{{doc.url}}"><h2>{{ doc.title }}</h2></a>
-
-            {% else %}
-
-            <li>
-                <a href="{{doc.url}}">{{ doc.title }}</a>
-            </li>
-
-        {% endif %}
-    {% endif %}
+{% endif %}
+{% endif %}
 
 {% endfor %}

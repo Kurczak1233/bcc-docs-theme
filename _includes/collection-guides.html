@@ -1,29 +1,29 @@
 {% for guide in site.guides %}
-    {% if page.url == "/guides/index.html" %}
-        {% if guide.title == "Guides Contents" %}
+{% if page.url == "/guides/index.html" %}
+{% if guide.title == "Guides Contents" %}
+<li>
+    <h2>Guides</h2>
+</li>
+{% else %}
 
-                <h2>{{ guide.title }}</h2>
+<li>
+    <a href="{{guide.url}}">{{ guide.title }}</a>
+</li>
 
-        {% else %}
+{% endif %}
 
-            <li>
-                <a href="{{guide.url}}">Guides</a>
-            </li>
+{% else %}
+{% if guide.title == "Guides Contents" %}
+<li>
+    <a href="{{guide.url}}"><h2>Guides</h2></a>
+</li>
+{% else %}
 
-        {% endif %}
+<li>
+    <a href="{{guide.url}}">{{ guide.title }}</a>
+</li>
 
-    {% else %}
-        {% if guide.title == "Guides Contents" %}
-
-            <a href="{{guide.url}}"><h2>{{ guide.title }}</h2></a>
-
-            {% else %}
-
-            <li>
-                <a href="{{guide.url}}">{{ guide.title }}</a>
-            </li>
-
-        {% endif %}
-    {% endif %}
+{% endif %}
+{% endif %}
 
 {% endfor %}

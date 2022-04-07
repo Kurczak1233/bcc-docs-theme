@@ -1,30 +1,30 @@
 {% for project in site.projects %}
 
-    {% if page.url == "/projects/index.html" %}
-        {% if project.title == "Projects Contents" %}
+{% if page.url == "/projects/index.html" %}
+{% if project.title == "Projects Contents" %}
+<li>
+    <h2>Projects</h2>
+</li>
+{% else %}
 
-                <h2>{{ project.title }}</h2>
+<li>
+    <a href="{{project.url}}">{{ project.title }}</a>
+</li>
 
-        {% else %}
+{% endif %}
 
-            <li>
-                <a href="{{project.url}}">Projects</a>
-            </li>
+{% else %}
+{% if project.title == "Projects Contents" %}
+<li>
+    <a href="{{project.url}}"><h2>Projects</h2></a>
+</li>
+{% else %}
 
-        {% endif %}
+<li>
+    <a href="{{project.url}}">{{ project.title }}</a>
+</li>
 
-    {% else %}
-        {% if project.title == "Projects Contents" %}
-
-            <a href="{{project.url}}"><h2>{{ project.title }}</h2></a>
-
-            {% else %}
-
-            <li>
-                <a href="{{project.url}}">{{ project.title }}</a>
-            </li>
-
-        {% endif %}
-    {% endif %}
+{% endif %}
+{% endif %}
 
 {% endfor %}
