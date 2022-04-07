@@ -1,13 +1,13 @@
 {% for plugin in site.plugins %}
     {% if page.url == "/plugins/index.html" %}
-        {% if plugin.title == "plugins Contents" %}
+        {% if plugin.title == "Plugins Contents" %}
 
                 <h2>{{ plugin.title }}</h2>
 
         {% else %}
 
             <li>
-                <a href="{{plugin.url}}">{{ plugin.title }}</a>
+                <a href="{{plugin.url}}">Plugins</a>
             </li>
 
         {% endif %}

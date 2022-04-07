@@ -1,13 +1,13 @@
 {% for doc in site.docs %}
     {% if page.url == "/docs/index.html" %}
-        {% if doc.title == "docs Contents" %}
+        {% if doc.title == "Docs Contents" %}
 
                 <h2>{{ doc.title }}</h2>
 
         {% else %}
 
             <li>
-                <a href="{{doc.url}}">{{ doc.title }}</a>
+                <a href="{{doc.url}}">Documentation</a>
             </li>
 
         {% endif %}
