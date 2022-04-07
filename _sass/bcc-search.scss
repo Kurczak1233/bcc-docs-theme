@@ -330,3 +330,17 @@
   }
 
 }
+
+#content-list{
+  width: fit-content;
+  display: flex;
+  flex-direction: column-reverse;
+
+  a{
+    text-decoration: none;
+    h2{
+      color: $bcc-dark-green;
+    }
+  }
+
+}

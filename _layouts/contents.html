@@ -48,36 +48,31 @@
 
 
 <main id="content" class="main-content" role="main">
-    <ul class="content-page-menu">
-        {% if page.url == "/projects/"%}
-            {% include collection-projects.html %}
-        {% endif%}
+    <ul id="content-list">
 
-        {% if page.url == "/projects/index.html || page.url == "/projects/index || page.url == "/projects/ || page.url == "/projects" %}
+        {% if page.url == "/projects/index.html" %}
 
             {% include collection-projects.html %}
 
-        {% else if page.url == "/guides/index.html || page.url == "/guides/index || page.url == "/guides/ || page.url == "/guides" %}
+        {% else if page.url == "/guides/index.html"%}
 
             {% include collection-guides.html %}
 
-        {% else if page.url == "/topics/index.html || page.url == "/topics/index || page.url == "/topics/ || page.url == "/topics" %}
+        {% else if page.url == "/topics/index.html"%}
 
             {% include collection-topics.html %}
 
-        {% else if page.url == "/docs/index.html || page.url == "/docs/index || page.url == "/docs/ || page.url == "/docs" %}
+        {% else if page.url == "/docs/index.html"%}
 
             {% include collection-docs.html %}
 
-        {% else if page.url == "/plugins/index.html || page.url == "/plugins/index || page.url == "/plugins/ || page.url == "/plugins" %}
+        {% else if page.url == "/plugins/index.html"%}
 
             {% include collection-plugins.html %}
 
         {% endif %}
 
     </ul>
-
-    {% include edit-page.html %}
 
 </main>
 
