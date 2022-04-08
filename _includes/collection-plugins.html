@@ -23,17 +23,9 @@
 
             {% if plugin.title != "Plugins Contents" %}
 
-                {% if plugin.url contains "index.html" %}
-                    <li class="collection-main">
-                        <a href="{{plugin.url}}">{{ plugin.title }}</a>
-                    </li>
-                {% else %}
-                    <ul class="collection-sub">
-                        <li>
-                            <a href="{{plugin.url}}">{{ plugin.title }}</a>
-                        </li>
-                    </ul>
-                {% endif %}
+                <li>
+                    <a href="{{plugin.url}}">{{ plugin.title }}</a>
+                </li>
 
             {% endif %}
 
