@@ -19,14 +19,24 @@
     {% endfor %}
 
     <ul class="content-list collection-guides">
-
         {% for guide in site.guides %}
+
+            {% assign repo = guide.url | split:"/" %}
+            {% assign filename = repo | slice: 3 %}
 
             {% if guide.title != "Guides Contents" %}
 
-            <li>
-                <a href="{{guide.url}}">{{ guide.title }}</a>
-            </li>
+                {% if filename contains "index.html" %}
+                    <li class="collection-main">
+                        <a href="{{guide.url}}">{{ guide.title }}</a>
+                    </li>
+                {% else %}
+                    <ul class="collection-sub">
+                        <li>
+                            <a href="{{guide.url}}">{{ guide.title }}</a>
+                        </li>
+                    </ul>
+                {% endif %}
 
             {% endif %}
 

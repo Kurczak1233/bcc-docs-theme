@@ -19,14 +19,24 @@
     {% endfor %}
 
     <ul class="content-list collection-plugins">
-
         {% for plugin in site.plugins %}
+
+            {% assign repo = plugin.url | split:"/" %}
+            {% assign filename = repo | slice: 3 %}
 
             {% if plugin.title != "Plugins Contents" %}
 
-            <li>
-                <a href="{{plugin.url}}">{{ plugin.title }}</a>
-            </li>
+                {% if filename contains "index.html" %}
+                    <li class="collection-main">
+                        <a href="{{plugin.url}}">{{ plugin.title }}</a>
+                    </li>
+                {% else %}
+                    <ul class="collection-sub">
+                        <li>
+                            <a href="{{plugin.url}}">{{ plugin.title }}</a>
+                        </li>
+                    </ul>
+                {% endif %}
 
             {% endif %}
 
