@@ -28,11 +28,13 @@
                         <a href="{{doc.url}}">{{ doc.title }}</a>
                     </li>
                 {% else %}
-                    <ul class="collection-sub">
-                        <li>
-                            <a href="{{doc.url}}">{{ doc.title }}</a>
-                        </li>
-                    </ul>
+                    <li class="collection-sub">
+                        <ul>
+                            <li>
+                                <a href="{{doc.url}}">{{ doc.title }}</a>
+                            </li>
+                        </ul>
+                    </li>
                 {% endif %}
 
             {% endif %}

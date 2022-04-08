@@ -325,25 +325,29 @@
     color: $bcc-dark-green;
   }
 
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 
 }
 
-#content-list{
+.content-list {
   width: fit-content;
   //display: flex;
   //flex-direction: column-reverse;
 
-  h2{
-    margin-left: -15px;
-
+  .collection-main{
+    font-weight: bold;
   }
 
-  a{
+  .collection-sub{
+    list-style: none;
+  }
+
+  a {
     text-decoration: none;
-    h2{
+
+    &:hover {
       color: $bcc-dark-green;
     }
   }
