@@ -333,15 +333,11 @@
 
 .content-list {
   width: fit-content;
-  //display: flex;
-  //flex-direction: column-reverse;
 
-  .collection-main{
-    font-weight: bold;
-  }
-
-  .collection-sub{
+  .collection-sub {
     list-style: none;
+    margin: 0;
+    padding: 0;
   }
 
   a {
@@ -350,6 +346,14 @@
     &:hover {
       color: $bcc-dark-green;
     }
+  }
+
+}
+
+.contents-page {
+
+  .collection-main {
+    font-weight: bold;
   }
 
 }

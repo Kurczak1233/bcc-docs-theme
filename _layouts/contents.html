@@ -47,30 +47,30 @@
 </header>
 
 
-<main id="content" class="main-content" role="main">
+<main id="content" class="main-content contents-page" role="main">
 
     {{ content }}
 
 
     {% if page.url == "/projects/index.html" %}
 
-        {% include collection-projects.html %}
+    {% include collection-projects.html %}
+    {% include collection-projects-subitems.html %}
 
     {% elsif page.url == "/guides/index.html"%}
 
-        {% include collection-guides.html %}
+    {% include collection-guides.html %}
+    {% include collection-guides-subitems.html %}
 
     {% elsif page.url == "/topics/index.html"%}
 
-        {% include collection-topics.html %}
+    {% include collection-topics.html %}
+    {% include collection-topics-subitems.html %}
 
     {% elsif page.url == "/docs/index.html"%}
 
-        {% include collection-docs.html %}
-
-    {% elsif page.url == "/plugins/index.html"%}
-
-        {% include collection-plugins.html %}
+    {% include collection-docs.html %}
+    {% include collection-docs-subitems.html %}
 
     {% endif %}
 

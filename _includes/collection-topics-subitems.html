@@ -1,0 +1,21 @@
+<ul class="content-list collection-topics">
+    {% for topic in site.topics %}
+
+    {% if topic.title != "Topics Contents" %}
+
+    {% unless topic.url contains "index.html" %}
+
+    <li class="collection-sub">
+        <ul>
+            <li>
+                <a href="{{topic.url}}">{{ topic.title }}</a>
+            </li>
+        </ul>
+    </li>
+    {% endunless %}
+
+    {% endif %}
+
+    {% endfor %}
+
+</ul>
