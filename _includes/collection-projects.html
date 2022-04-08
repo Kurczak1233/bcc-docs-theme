@@ -21,12 +21,10 @@
     <ul class="content-list collection-projects">
         {% for project in site.projects %}
 
-            {% assign repo = project.url | split:"/" %}
-            {% assign filename = repo | slice: 3 %}
 
             {% if project.title != "Projects Contents" %}
 
-                {% if filename contains "index.html" %}
+                {% if project.url contains "index.html" %}
                     <li class="collection-main">
                         <a href="{{project.url}}">{{ project.title }}</a>
                     </li>

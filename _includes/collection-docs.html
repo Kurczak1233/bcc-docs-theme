@@ -21,12 +21,9 @@
     <ul class="content-list collection-docs">
         {% for doc in site.docs %}
 
-            {% assign repo = doc.url | split:"/" %}
-            {% assign filename = repo | slice: 3 %}
-
             {% if doc.title != "Docs Contents" %}
 
-                {% if filename contains "index.html" %}
+                {% if doc.url contains "index.html" %}
                     <li class="collection-main">
                         <a href="{{doc.url}}">{{ doc.title }}</a>
                     </li>
