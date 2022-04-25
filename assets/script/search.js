@@ -40,6 +40,9 @@ async function searchInFiles() {
         sliceFilePath = sliceFilePath.replace("/index", "");
 
         let markdownPageUrl = String(sliceFilePath);
+        let developerPageUrl
+        const searchProjects = "_projects"
+        const searchDocs = "_docs"
 
         if (markdownPageUrl.indexOf("docs") !== -1) {
 
@@ -47,7 +50,15 @@ async function searchInFiles() {
 
         } else if (markdownRepoName === "bcc-code.github.io") {
 
-            markdownPageUrl = window.location.origin + "/" + String(sliceFilePath).replace(/^bcc-code.github.io/, " ");
+            developerPageUrl = window.location.origin + "/" + String(sliceFilePath).replace(/^bcc-code.github.io/, " ")
+
+            if (developerPageUrl.includes(searchProjects)){
+                markdownPageUrl = window.location.origin + "/" + String(developerPageUrl).replace(/^_projects/, "projects");
+            }
+
+            else if(developerPageUrl.includes(searchDocs)){
+                markdownPageUrl = window.location.origin + "/" + String(developerPageUrl).replace(/^_projects/, "projects");
+            }
 
         } else {
 
