@@ -6,11 +6,11 @@ theme: jekyll-theme-cayman
 kramdown:
   parse_block_html: true
 
-#collections:
-#  projects:
-#    output: true
-#  docs:
-#    output: true
+collections:
+  projects:
+    output: true
+  docs:
+    output: true
 
 
 defaults:

@@ -42,20 +42,25 @@ async function searchInFiles() {
         let markdownPageUrl = String(sliceFilePath);
         const searchProjects = "_projects"
         const searchDocs = "_docs"
+        const searchGuides = "_guides"
+        const searchTopics = "_topics"
+        const searchPlugins = "_plugins"
 
 
         if (markdownPageUrl.includes(searchProjects)) {
             markdownPageUrl = String(markdownPageUrl).replace(/^_projects/, "/projects");
         } else if (markdownPageUrl.includes(searchDocs)) {
             markdownPageUrl = String(markdownPageUrl).replace(/^_docs/, "/docs");
+        } else if (markdownPageUrl.includes(searchGuides)) {
+            markdownPageUrl = String(markdownPageUrl).replace(/^_guides/, "/guides");
+        } else if (markdownPageUrl.includes(searchTopics)) {
+            markdownPageUrl = String(markdownPageUrl).replace(/^_topics/, "/topics");
+        } else if (markdownPageUrl.includes(searchPlugins)) {
+            markdownPageUrl = String(markdownPageUrl).replace(/^_plugins/, "/plugins");
+        } else if (markdownPageUrl.indexOf("docs") !== -1) {
+            markdownPageUrl = String(sliceFilePath).replace(/^docs/, markdownRepositoryName);
         } else {
-            if (markdownPageUrl.indexOf("docs") !== -1) {
-
-                markdownPageUrl = String(sliceFilePath).replace(/^docs/, markdownRepositoryName);
-
-            } else {
-                markdownPageUrl = markdownHtmlUrl;
-            }
+            markdownPageUrl = markdownHtmlUrl;
         }
 
 
