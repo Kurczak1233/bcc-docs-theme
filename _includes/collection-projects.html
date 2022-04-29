@@ -24,9 +24,11 @@
             {% if project.title != "Projects Contents" %}
 
                 {% if project.url contains "index.html" %}
-                    <li class="collection-main">
-                        <a href="{{project.url}}">{{ project.title }}</a>
-                    </li>
+                    {% if project.path != "_projects/bcc-wp/signon/index.md" %}
+                        <li class="collection-main">
+                            <a href="{{project.url}}">{{ project.title }}</a>
+                        </li>
+                    {% endif %}
                 {% endif %}
 
             {% endif %}
