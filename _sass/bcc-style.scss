@@ -8,6 +8,12 @@
   margin: 0;
   box-sizing: border-box;
 
+  hr{
+    display: block;
+    background: lightgray;
+    border: 0.5px solid lightgray;
+  }
+
   body {
     font-family: $text-sans;
 
@@ -69,7 +75,7 @@
 
       max-width: 1440px;
       position: relative;
-      margin: 4rem auto;
+      margin: 4rem auto 0;
 
       p {
         padding: 0.5rem 0;
