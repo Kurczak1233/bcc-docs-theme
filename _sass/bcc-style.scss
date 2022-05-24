@@ -8,7 +8,7 @@
   margin: 0;
   box-sizing: border-box;
 
-  hr{
+  hr {
     display: block;
     background: lightgray;
     border: 0.5px solid lightgray;
@@ -33,6 +33,7 @@
       margin-left: auto;
       margin-right: auto;
       background: $bcc-dark-green;
+      position: relative;
 
       img {
         max-width: 180px;
@@ -137,7 +138,7 @@
           display: none;
         }
 
-        code{
+        code {
           white-space: break-spaces;
         }
       }
@@ -191,6 +192,34 @@
       @include small {
         font-size: 1em;
       }
+    }
+
+  }
+}
+
+.navbar {
+  position: absolute;
+  left: -300px;
+  padding: 0 30px;
+  width: 225px;
+  height: auto;
+  top: -4rem;
+  z-index: 0;
+  bottom: 0;
+  background: #fafafa;
+
+  nav {
+    position: sticky;
+    top: 0;
+
+    h1 {
+      padding-bottom: 5px;
+      padding-top: 30px;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 5px !important;
     }
 
   }
