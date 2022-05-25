@@ -1,0 +1,37 @@
+<div>
+    {% for api in site.apis %}
+
+        {% if page.url == "/apis/index.html" %}
+
+            {% if api.title == "Apis Contents" %}
+                    <h2>Apis</h2>
+
+            {% endif %}
+
+        {% else %}
+
+            {% if api.title == "Apis Contents" %}
+                <h2><a href="{{api.url}}">Apis</a></h2>
+            {% endif %}
+
+        {% endif %}
+
+    {% endfor %}
+
+    <ul class="content-list collection-apis">
+        {% for api in site.apis %}
+
+            {% if api.title != "Apis Contents" %}
+
+                {% if api.url contains "index.html" %}
+                    <li class="collection-main">
+                        <a href="{{api.url}}">{{ api.title }}</a>
+                    </li>
+                {% endif %}
+
+            {% endif %}
+
+        {% endfor %}
+
+    </ul>
+</div>
