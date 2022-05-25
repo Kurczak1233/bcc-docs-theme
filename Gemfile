@@ -6,7 +6,6 @@ gemspec
 
 group :jekyll_plugins do
     gem "webrick", "~> 1.7"
-    gem "jekyll-tsc"
-    
-    
+    gem "jekyll-menus"
+
 end

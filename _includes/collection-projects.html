@@ -1,32 +1,33 @@
 <div>
-    {% for project in site.projects %}
+    {% for product in site.products %}
 
-        {% if page.url == "/projects/index.html" %}
+        {% if page.url == "/products/index.html" %}
 
-            {% if project.title == "Projects Contents" %}
-                    <h2>Projects</h2>
+            {% if product.title == "Products Contents" %}
+
+                    <h2>Products</h2>
 
             {% endif %}
 
         {% else %}
 
-            {% if project.title == "Projects Contents" %}
-                <h2><a href="{{project.url}}">Projects</a></h2>
+            {% if product.title == "Products Contents" %}
+                <h2><a href="{{product.url}}">Products</a></h2>
             {% endif %}
 
         {% endif %}
 
     {% endfor %}
 
-    <ul class="content-list collection-projects">
-        {% for project in site.projects %}
+    <ul class="content-list collection-products">
+        {% for product in site.products %}
 
-            {% if project.title != "Projects Contents" %}
+            {% if product.title != "Products Contents" %}
 
-                {% if project.url contains "index.html" %}
-                    {% if project.path != "_projects/bcc-wp/signon/index.md" %}
+                {% if product.url contains "index.html" %}
+                    {% if product.path != "_products/bcc-wp/signon/index.md" %}
                         <li class="collection-main">
-                            <a href="{{project.url}}">{{ project.title }}</a>
+                            <a href="{{product.url}}">{{ product.title }}</a>
                         </li>
                     {% endif %}
                 {% endif %}
