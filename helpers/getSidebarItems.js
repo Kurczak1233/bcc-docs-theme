@@ -3,10 +3,11 @@ import glob from "glob";
 
 export const findAllItemChildren = (item, array, fullPath) => {
   if (item.split("/").length >= 2) {
-    const firstItemName = item.split("/")[0].replace(/-/g, " ");
+
+    const firstItemName = capitalizeFirstLetterAndRemoveSpecialChars(item.split("/")[0]);
 
     const foundElement = array.findIndex(
-      (item) => item && item.text.replace(/-/g, " ") === firstItemName
+      (item) => item && capitalizeFirstLetterAndRemoveSpecialChars(item.text) === firstItemName
     );
 
     //Differentiate if item contains nested children
@@ -23,7 +24,7 @@ export const findAllItemChildren = (item, array, fullPath) => {
         // Elimanates empty folder (without md file) bug.
         // Replace all - with space
         array.push({
-          text: item.split("/")[0].replace(/-/g, " "),
+          text: capitalizeFirstLetterAndRemoveSpecialChars(item.split("/")[0]),
           children: [],
         });
         const lastElement = array[array.length - 1];
@@ -44,13 +45,13 @@ export const findAllItemChildren = (item, array, fullPath) => {
       const children = findAllItemChildren(joinedNames, array, fullPath);
       if (joinedNames === "index.md") {
         return array.push({
-          text: item.split("/")[0].replace(/-/g, " "),
+          text: capitalizeFirstLetterAndRemoveSpecialChars(item.split("/")[0]),
           link: `/${fullPath}`,
           children: children ? [children] : [],
         });
       }
       return array.push({
-        text: item.split("/")[0].replace(/-/g, " "),
+        text: capitalizeFirstLetterAndRemoveSpecialChars(item.split("/")[0]),
         children: children ? [children] : [],
       });
     }
@@ -62,7 +63,7 @@ export const findAllItemChildren = (item, array, fullPath) => {
 
     // Push item to its children
     return array[foundElement].children.push({
-      text: path.basename(item, ".md").replace(/-/g, " "),
+      text: capitalizeFirstLetterAndRemoveSpecialChars(path.basename(item, ".md")),
       link: `/${fullPath}`,
       activeMatch: `^/${path.basename(item, ".md")}`,
     });
@@ -74,7 +75,7 @@ export const findAllItemChildren = (item, array, fullPath) => {
 
   //It is a children last element
   return {
-    text: path.basename(item, ".md").replace(/-/g, " "),
+    text: capitalizeFirstLetterAndRemoveSpecialChars(path.basename(item, ".md")),
     link: `/${fullPath}`,
     activeMatch: `^/${path.basename(item, ".md")}`,
   };
@@ -82,15 +83,12 @@ export const findAllItemChildren = (item, array, fullPath) => {
 
 export const getSideBarItems = (__dirname) => {
   const filesPaths = glob.sync(`${__dirname}/../**/*.md`);
-  // console.log(`${__dirname}/../**/*.md`, filesPaths);
-  //Get path name from the docs folder
 
   var paths = filesPaths.map((file) => {
     return path.relative(`${__dirname}/..`, file);
   });
 
-  // Exclude paths that starts with "../" from filesPaths
-  paths = paths.filter((item) => !item.substring(0, 3).includes("../"));
+  paths = paths.filter((item) => !item.split("/").includes("node_modules"));
 
   console.log(paths);
 
@@ -107,7 +105,7 @@ export const getSideBarItems = (__dirname) => {
     } else {
       if (item !== "README.md") {
         sideBarItems.push({
-          text: path.basename(item, ".md").replace(/-/g, " "),
+          text: capitalizeFirstLetterAndRemoveSpecialChars(path.basename(item, ".md")),
           link: `/${item}`,
           activeMatch: `^/${path.basename(item, ".md")}`,
         });
@@ -126,4 +124,9 @@ export const getSideBarItems = (__dirname) => {
   });
 
   return sortedItems.filter((item) => item);
+};
+
+const capitalizeFirstLetterAndRemoveSpecialChars = (text) => {
+  const reducedText = text.replace(/-/g, "").replace(/_/g, "");
+  return reducedText.charAt(0).toUpperCase() + reducedText.slice(1);
 };
