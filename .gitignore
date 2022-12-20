@@ -1,8 +1,5 @@
-_site
-.sass-cache
-Gemfile.lock
-*.gem
-.jekyll-cache
-.jekyll-cache
-/.vs
-.idea
+node_modules
+assets/.DS_Store
+.DS_Store
+.temp
+.cache

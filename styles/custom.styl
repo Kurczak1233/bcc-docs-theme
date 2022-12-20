@@ -1,0 +1,25 @@
+.navbar {
+  background-color: var(--c-navbar);
+  a {
+    display: flex;
+  }
+  .site-name {
+    width: -webkit-fill-available;
+    position: fixed;
+    left: 0px;
+    text-align: center;
+  }
+}
+#sidebar {
+  background: var(--c-bg);
+  border-color: var(--c-border);
+}
+
+//Removes fade animation when page changes
+.fade-slide-y-enter-from, .fade-slide-y-leave-to {
+    transform: none;
+    opacity: 1;
+}
+.fade-slide-y-leave-active {
+  transition: none;
+}
